@@ -23,7 +23,7 @@
 		<div id="migas">
 			<p class="txt"><fmt:message key="migas.general.estaen" />:</p>		
 			<ul>
-				<li><strong>Búsqueda</strong></li>
+				<li><strong><fmt:message key="pagina.busqueda.busqueda" /></strong></li>
 			</ul>
 			<div class="redes_sociales">
 				<a href="http://www.gobiernodecanarias.org/istac/herramientas/rss.html" accesskey="r" title="Canales RSS (tecla de acceso: r)">
@@ -59,12 +59,12 @@
                         <c:choose>
                             <c:when test="${busqueda.pestania eq 'ALL'}">
                                 <span class="pestSel">
-                                    <input type="button" class="bt_pst" id="busca_todo" value="Todo" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;">
+                                    <input type="button" class="bt_pst" id="busca_todo" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.todo" />
                                 </span>
                             </c:when>
                             <c:otherwise>
                                 <span class="pest">
-                                    <input type="button" class="bt_pst" id="busca_todo" value="Todo" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+                                    <input type="button" class="bt_pst" id="busca_todo" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.todo" /></input>
                                 </span>
                             </c:otherwise>
                         </c:choose>
@@ -75,12 +75,12 @@
     					<c:choose>
     						<c:when test="${busqueda.pestania eq 'DSC'}">
     							<span class="pestSel">
-    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
     			 			  	</span>
     						</c:when>
     						<c:otherwise>
     							<span class="pest">
-    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
     			 			  	</span>
     						</c:otherwise>
     					</c:choose>
@@ -91,12 +91,12 @@
     					<c:choose>
     						<c:when test="${busqueda.pestania eq 'DSP'}">
     							<span class="pestSel">
-    			 			  		<input type="button" class="bt_pst" id="busca_publicaciones" value="Publicaciones" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_publicaciones" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.publicaciones" /></input>
     			 			  	</span>
     						</c:when>
     						<c:otherwise>
     							<span class="pest">
-    			 			  		<input type="button" class="bt_pst" id="busca_publicaciones" value="Publicaciones" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_publicaciones" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.publicaciones" /></input>
     			 			  	</span>
     						</c:otherwise>
     					</c:choose>
