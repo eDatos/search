@@ -126,7 +126,7 @@ public class BusquedaController {
         // Búsqueda de sugeridos
         SolrDocumentList solrSuggestedDocumentList = null;
         if (solrDocumentList == null || solrDocumentList.isEmpty()) {
-            result.rejectValue("userQuery", "error.noencontrado", "No se han encontrado resultados");
+            result.rejectValue("userQuery", "error.noencontrado");
         } else {
             try {
                 solrSuggestedDocumentList = busquedaService.ejecutarQueryForSuggested(busqueda);

@@ -25,7 +25,7 @@
                                 </div>
                             </div>                            
                             <div class="row" style="margin-top: 1em; float:right">
-                               <button id="advanceSearch" type="submit" class="btn btn-primary">Buscar</button>
+                               <button id="advanceSearch" type="submit" class="btn btn-primary"><fmt:message key="pagina.busqueda.buscar" /></button>
                             </div>
                         </div>
                     </div>

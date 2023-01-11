@@ -14,7 +14,7 @@
 		<div id="migas">
 			<p class="txt"><fmt:message key="migas.general.estaen" />:</p>		
 			<ul>
-				<li><strong>Búsqueda</strong></li>
+				<li><strong><fmt:message key="pagina.busqueda.busqueda" /></strong></li>
 			</ul>
 			<div class="redes_sociales">
 				<a href="http://www.gobiernodecanarias.org/istac/herramientas/rss.html" accesskey="r" title="Canales RSS (tecla de acceso: r)">
