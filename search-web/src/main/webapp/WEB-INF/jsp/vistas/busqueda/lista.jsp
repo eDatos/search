@@ -75,12 +75,12 @@
     					<c:choose>
     						<c:when test="${busqueda.pestania eq 'DSC'}">
     							<span class="pestSel">
-    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
     			 			  	</span>
     						</c:when>
     						<c:otherwise>
     							<span class="pest">
-    			 			  		<input type="button" class="bt_pst" id="busca_datos" value="Datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
+    			 			  		<input type="button" class="bt_pst" id="busca_datos" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"><fmt:message key="pagina.busqueda.datos" /></input>
     			 			  	</span>
     						</c:otherwise>
     					</c:choose>
