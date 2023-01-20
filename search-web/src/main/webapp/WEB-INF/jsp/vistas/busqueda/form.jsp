@@ -5,7 +5,8 @@
     <spring:url value="busca" var="formUrl"/>  
     <form:form modelAttribute="busqueda" method="get" action="${fn:escapeXml(formUrl)}" class="form-horizontal" role="form">
         <div class="custom-input-group" id="search-control">
-            <form:input path="userQuery" type="text" class="form-control" placeholder="texto de búsqueda..." />
+        	<fmt:message key="pagina.busqueda.placeholder.user_query" var="placeHolderUserQuery"/>
+            <form:input path="userQuery" type="text" class="form-control" placeholder="${placeHolderUserQuery}" />
             <div class="custom-input-group-btn">
                 <div class="btn-group" role="group">
                     <div class="dropdown dropdown-lg">
@@ -14,14 +15,15 @@
                         </button>
                         <div id="search-adv" class="dropdown-menu dropdown-menu-right" role="menu">
                             <div class="page-header">
-                                <h3 class="resultado_titulo">Filtros de texto</h3>
+                                <h3 class="resultado_titulo"><fmt:message key="pagina.busqueda.filtros" /></h3>
                             </div>
                             <div class="row">
                                 <div class="col-md-5" style="margin-bottom: 3px;">
                                     <form:select class="form-control" path="filtroTexto" items="${filtroTextoMap}" />
                                 </div>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" path="filtroTextoQuery" placeholder="Ejemplo: Tasa de paro" />
+                                	<fmt:message key="pagina.busqueda.filtros.placeholder.texto_query" var="placeHolderTextQuery"/>
+                                    <form:input type="text" class="form-control" path="filtroTextoQuery" placeholder="${placeHolderTextQuery}" />
                                 </div>
                             </div>                            
                             <div class="row" style="margin-top: 1em; float:right">

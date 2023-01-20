@@ -11,15 +11,15 @@
                         <% 
                            BusquedaWrapper busquedaOverWriteOrd = new BusquedaWrapper((Busqueda)request.getAttribute("busqueda"));
                         %>
-				    	<p>Ordenar por:
+				    	<p><fmt:message key="pagina.busqueda.ordenacion" />:
 				    		<c:choose>				    		
 				    			<c:when test="${empty busqueda.sort}">
 				    				<% busquedaOverWriteOrd.getBusqueda().setSort("1");%>
-									<span><a href="<%=WebUtils.generarUrl("busca", busquedaOverWriteOrd)%>">Por fecha de actualización</a></span><span style="padding: 0 5px;">|</span><span><b>Por importancia</b></span>
+									<span><a href="<%=WebUtils.generarUrl("busca", busquedaOverWriteOrd)%>"><fmt:message key="pagina.busqueda.ordenacion.fecha" /></a></span><span style="padding: 0 5px;">|</span><span><b><fmt:message key="pagina.busqueda.ordenacion.importancia" /></b></span>
 								</c:when>
 				    			<c:otherwise>
 				    				<% busquedaOverWriteOrd.getBusqueda().setSort(StringUtils.EMPTY);%>
-				    				<span><b>Por fecha de actualización</b></span><span style="padding: 0 5px;">|</span><span><a href="<%=WebUtils.generarUrl("busca", busquedaOverWriteOrd)%>">Por importancia</a></span>
+				    				<span><b><fmt:message key="pagina.busqueda.ordenacion.fecha" /></b></span><span style="padding: 0 5px;">|</span><span><a href="<%=WebUtils.generarUrl("busca", busquedaOverWriteOrd)%>"><fmt:message key="pagina.busqueda.ordenacion.importancia" /></a></span>
 				    			</c:otherwise>
 				    		</c:choose>
 				    	</p>
