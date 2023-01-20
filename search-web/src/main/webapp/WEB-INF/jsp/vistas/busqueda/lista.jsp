@@ -56,8 +56,10 @@
     	 			        BusquedaWrapper busquedaPestaniaWrapper = new BusquedaWrapper((Busqueda)request.getAttribute("busqueda"));
     	 			        busquedaPestaniaWrapper.getBusqueda().setPestania("ALL");
                         %>
+                        <fmt:message key="pagina.busqueda.todo" var="todo"/>
+                        <fmt:message key="pagina.busqueda.datos" var="datos" />
+                        <fmt:message key="pagina.busqueda.publicaciones" var="publicaciones" />
                         <c:choose>
-                        	<fmt:message key="pagina.busqueda.todo" var="todo"/>
                             <c:when test="${busqueda.pestania eq 'ALL'}">
                                 <span class="pestSel">
                                 	<input type="button" class="bt_pst" id="busca_todo" value="${todo}" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;">
@@ -74,7 +76,6 @@
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSC");
                         %>
     					<c:choose>
-    						<fmt:message key="pagina.busqueda.datos" var="datos" />
     						<c:when test="${busqueda.pestania eq 'DSC'}">
     							<span class="pestSel">
     								<input type="button" class="bt_pst" id="busca_datos" value="${datos}" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
@@ -91,7 +92,6 @@
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSP");
                         %>
     					<c:choose>
-    						<fmt:message key="pagina.busqueda.publicaciones" var="publicaciones" />
     						<c:when test="${busqueda.pestania eq 'DSP'}">
     							<span class="pestSel">
     								<input type="button" class="bt_pst" id="busca_publicaciones" value="${publicaciones}" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
