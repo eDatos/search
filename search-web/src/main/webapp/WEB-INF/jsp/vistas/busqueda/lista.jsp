@@ -104,6 +104,7 @@
     						</c:otherwise>
     					</c:choose>
                         <c:if test="${1 < 0}">
+                        	<fmt:message key="pagina.busqueda.complementaria" var="complementaria" />
         					<span class="entreSel"></span>
                             <% 
                                 busquedaPestaniaWrapper.getBusqueda().setPestania("COMP"); //poner pestania de complementari
@@ -111,12 +112,12 @@
         					<c:choose>
         						<c:when test="${busqueda.pestania eq 'COMP'}">
         							<span class="pestSel">
-        			 			  		<input type="button" class="bt_pst" id="busca_complementaria" value="Complementaria" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+        			 			  		<input type="button" class="bt_pst" id="busca_complementaria" value="${complementaria}" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
         			 			  	</span>
         						</c:when>
         						<c:otherwise>
         							<span class="pest">
-        			 			  		<input type="button" class="bt_pst" id="busca_complementaria" value="Complementaria" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
+        			 			  		<input type="button" class="bt_pst" id="busca_complementaria" value="${complementaria}" tabindex="12" accesskey="d" title="Alt+d" onclick="window.location.href='<%=WebUtils.generarUrl("busca", busquedaPestaniaWrapper)%>'; return false;"></input>
         			 			  	</span>
         						</c:otherwise>
         					</c:choose>
@@ -127,7 +128,7 @@
                         <div style="float:right">
                             <span class="istac-bs input-group-btn">
                               <button id="btnExpandInfo" type="button" class="btn-link"><i id="iExpandInfo" class="glyphicon glyphicon-eye-close"></i>
-                                <span>Menos detalles</span><span style="display: none">Más detalles</span>
+                                <span><fmt:message key="pagina.busqueda.menos_detalle" /></span><span style="display: none"><fmt:message key="pagina.busqueda.mas_detalle" /></span>
                               </button>
                             </span>
                         </div>
