@@ -19,7 +19,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5" style="margin-bottom: 3px;">
-                                    <form:select class="form-control" path="filtroTexto" items="${filtroTextoMap}" />
+                                	<fmt:message key="pagina.busqueda.filtros.filtroTexto.some_words" var="SOME_WORDS" />
+                                    <fmt:message key="pagina.busqueda.filtros.filtroTexto.exact_phrase" var="EXACT_PHRASE" />
+                                    <fmt:message key="pagina.busqueda.filtros.filtroTexto.all_words" var="ALL_WORDS" />
+                                    <form:select class="form-control" path="filtroTexto">
+                                    	<c:forEach var="filtroTexto" items="${filtroTextoMap}">
+                                    		<c:choose>
+                                    			<c:when test="${filtroTexto.key == 'SOME_WORDS'}">
+                                    				<option value="${filtroTexto.key}">${SOME_WORDS}</option>
+                                    			</c:when>
+                                    			<c:when test="${filtroTexto.key == 'EXACT_PHRASE'}">
+                                    				<option value="${filtroTexto.key}">${EXACT_PHRASE}</option>
+                                    			</c:when>
+                                    			<c:when test="${filtroTexto.key == 'ALL_WORDS'}">
+                                    				<option value="${filtroTexto.key}">${ALL_WORDS}</option>
+                                    			</c:when>
+                                    		</c:choose>
+                                    	</c:forEach>
+                                    </form:select>
                                 </div>
                                 <div class="col-md-7">
                                 	<fmt:message key="pagina.busqueda.filtros.placeholder.texto_query" var="placeHolderTextQuery"/>
