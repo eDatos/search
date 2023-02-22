@@ -13,9 +13,9 @@
     <name>SEARCH</name>
 
     <scm>
-        <connection>scm:git:http://git.arte-consultores.com/istac/search</connection>
-        <developerConnection>scm:git:http://git.arte-consultores.com/istac/search</developerConnection>
-        <url>http://git.arte-consultores.com/istac/search</url>
+        <connection>scm:git:https://git.arte-consultores.com/istac/search</connection>
+        <developerConnection>scm:git:https://git.arte-consultores.com/istac/search</developerConnection>
+        <url>https://git.arte-consultores.com/istac/search</url>
         <tag>HEAD</tag>
     </scm>
 
