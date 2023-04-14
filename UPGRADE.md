@@ -8,6 +8,9 @@
 
 *Se deberá realizar primero la actualización de la versión 1.0.0 a la 2.0.0 y luego desde la 2.0.0 a la 3.0.0*
 
+## 5.3.4 a 5.3.5-SNAPSHOT
+- Se han realizado cambios a la base de datos, por ello se proveen una serie de scripts SQL para adaptarse a la nueva versión. 
+  Ejecutar los scripts de la siguiente ruta en el esquema correspondiente por orden de fecha: [etc/changes-from-release/5.3.4/db/common-metadata/postgresql/](etc/changes-from-release/5.3.4/db/common-metadata/postgresql)
 
 ## 0.0.0 a 5.3.1
 * El proceso de actualizaciones entre versiones para versiones anteriores a la 5.3.1 está definido en "Metamac - Manual de instalación.doc"
