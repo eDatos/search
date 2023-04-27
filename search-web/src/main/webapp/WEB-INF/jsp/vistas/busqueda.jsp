@@ -14,23 +14,28 @@
 		<div id="migas">
 			<p class="txt"><fmt:message key="migas.general.estaen" />:</p>		
 			<ul>
-				<li><strong>Búsqueda</strong></li>
+				<li><strong><fmt:message key="pagina.busqueda.busqueda" /></strong></li>
 			</ul>
 			<div class="redes_sociales">
-				<a href="http://www.gobiernodecanarias.org/istac/herramientas/rss.html" accesskey="r" title="Canales RSS (tecla de acceso: r)">
-					<img src="theme/images/icons/rss_20x20.png" title="Canales RSS (tecla de acceso: r)" alt="Canales RSS (tecla de acceso: r)">
+				<fmt:message key="pagina.busqueda.redes_sociales.rss" var="rssTitle"/>
+				<fmt:message key="pagina.busqueda.redes_sociales.twitter" var="twitterTitle"/>
+				<fmt:message key="pagina.busqueda.redes_sociales.istac" var="istacTitle"/>
+				<fmt:message key="pagina.busqueda.redes_sociales.istacYoutube" var="istacYoutubeTitle"/>
+				<fmt:message key="pagina.busqueda.redes_sociales.istacTableau" var="istacTableauTitle"/>
+				<a href="http://www.gobiernodecanarias.org/istac/herramientas/rss.html" accesskey="r" title="${rssTitle}">
+					<img src="theme/images/icons/rss_20x20.png" title="${rssTitle}" alt="Canales RSS (tecla de acceso: r)">
 				</a>
-				<a href="http://www.gobiernodecanarias.org/istac/twitter" accesskey="t" title="Seguir a istac_es en Twitter (tecla de acceso: t)">
-					<img src="theme/images/icons/twitter_20x20.png" title="Seguir a istac_es en Twitter (tecla de acceso: t)" alt="Seguir a istac_es en Twitter (tecla de acceso: t)">
+				<a href="http://www.gobiernodecanarias.org/istac/twitter" accesskey="t" title="${twitterTitle}">
+					<img src="theme/images/icons/twitter_20x20.png" title="${twitterTitle}" alt="Seguir a istac_es en Twitter (tecla de acceso: t)">
 				</a>
-				<a href="https://www.slideshare.net/ISTAC" accesskey="s" title="Seguir a ISTAC en Slideshare (tecla de acceso: s)">
-					<img src="theme/images/icons/Slideshare_20x20.png" title="Seguir a ISTAC en Slideshare (tecla de acceso: s)" alt="Seguir a ISTAC en Slideshare (tecla de acceso: s)">
+				<a href="https://www.slideshare.net/ISTAC" accesskey="s" title="${istacTitle}">
+					<img src="theme/images/icons/Slideshare_20x20.png" title="${istacTitle}" alt="Seguir a ISTAC en Slideshare (tecla de acceso: s)">
 				</a>
-				<a href="https://www.youtube.com/user/istacES" accesskey="y" title="Seguir a ISTAC en Youtube (tecla de acceso: y)">
-					<img src="theme/images/icons/youtube_20x20.png" title="Seguir a ISTAC en Youtube (tecla de acceso: y)" alt="Seguir a ISTAC en Youtube (tecla de acceso: y)">
+				<a href="https://www.youtube.com/user/istacES" accesskey="y" title="${istacYoutubeTitle}">
+					<img src="theme/images/icons/youtube_20x20.png" title="${istacYoutubeTitle}" alt="Seguir a ISTAC en Youtube (tecla de acceso: y)">
 				</a>
-				<a href="https://public.tableau.com/profile/istac#!/" accesskey="s" title="Seguir a ISTAC en Tableau (tecla de acceso: u)">
-					<img src="theme/images/icons/tableau_20.png" title="Seguir a ISTAC en Tableau (tecla de acceso: u)" alt="Seguir a ISTAC en Tableau (tecla de acceso: u)">
+				<a href="https://public.tableau.com/profile/istac#!/" accesskey="s" title="${istacTableauTitle}">
+					<img src="theme/images/icons/tableau_20.png" title="${istacTableauTitle}" alt="Seguir a ISTAC en Tableau (tecla de acceso: u)">
 				</a>
 			</div>
 		</div>
