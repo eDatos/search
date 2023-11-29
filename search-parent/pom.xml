@@ -41,7 +41,7 @@
         
         <!-- SPRING -->
         <spring.version>3.1.1.RELEASE</spring.version>
-        <aspectj.version>1.6.8</aspectj.version>
+        <aspectj.version>1.8.14</aspectj.version>
         <cglib-nodep.version>2.2</cglib-nodep.version>
 
         <!-- LOGGING -->
