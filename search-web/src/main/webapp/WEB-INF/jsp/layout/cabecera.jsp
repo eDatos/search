@@ -8,11 +8,15 @@
         <!-- MENU DE AYUDA -->
         <ul>
             <li>
-                <a href="https://sede.gobcan.es/hacienda/" target="" accesskey="e" title="Sede electrónica">Sede electrónica</a>
+                <a href="https://sede.gobiernodecanarias.org/sede/procedimientos_servicios/tramites?contentTypeId=321b9560-73a9-11df-8da5-bf2cae36f426&titulo=&tema=&departamento=c3254a40-6c07-11e5-8789-faa465ab1552&perfil=&organo=44f44490-6e56-11e5-8789-3a94baacdf31&tipo_tramite=&dirGral=44f44490-6e56-11e5-8789-3a94baacdf31&subtema=&enviado=true" target="" accesskey="d" title="Acceso a los procedimientos del ISTAC en la sede electrónica del Gobierno de Canarias">Sede electrónica</a>
             </li>
             <li>|</li>
             <li>
-                <a href="http://www.gobiernodecanarias.org/istac/servicios/atencion.html" accesskey="o" title="Contacte con nosotros (tecla de acceso: o)">Contacto</a>
+                <a href="https://www.gobiernodecanarias.org/istac/accesibilidad.html" target="" accesskey="a" title="Declaración de accesibilidad">Accesibilidad</a>
+            </li>
+            <li>|</li>
+            <li>
+                <a href="https://www.gobiernodecanarias.org/istac/servicios/atencion.html" accesskey="o" title="Acceso al apartado de atención ciudadana">Contacto</a>
             </li>
         </ul>
     </div>
