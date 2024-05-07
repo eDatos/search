@@ -1,7 +1,6 @@
 package es.gobcan.istac.idxmanager.core.service;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -96,10 +95,13 @@ public class SolrServiceImpl implements InitializingBean, SolrService {
     public SolrClient createHttpSolrClient() {
         try {
             // setup the server...
-            HttpSolrClient client = new HttpSolrClient.Builder(solrUrl + "/" + coreOrCollection)
-                .withConnectionTimeout(DEFAULT_CONNECTION_TIMEOUT)
-                .build();
-            
+            HttpSolrClient client = new HttpSolrClient(solrUrl + "/" + coreOrCollection);
+            client.setConnectionTimeout(DEFAULT_CONNECTION_TIMEOUT);
+            client.setDefaultMaxConnectionsPerHost(100);
+            client.setMaxTotalConnections(100);
+            // client.setUseMultiPartPost(random().nextBoolean());
+
+            // explicitly uses the binary codec for communication.
             client.setParser(new BinaryResponseParser());
             client.setRequestWriter(new BinaryRequestWriter());
 
@@ -111,7 +113,7 @@ public class SolrServiceImpl implements InitializingBean, SolrService {
     }
 
     public SolrClient createCloudSolrClient() {
-        try (CloudSolrClient client = new CloudSolrClient.Builder(Collections.singletonList(solrUrl)).build()) {
+        try (CloudSolrClient client = new CloudSolrClient(solrUrl)) {
             client.setDefaultCollection(coreOrCollection);
             client.setZkClientTimeout(DEFAULT_CONNECTION_TIMEOUT);
 
