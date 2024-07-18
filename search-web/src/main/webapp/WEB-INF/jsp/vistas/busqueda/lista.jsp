@@ -43,9 +43,6 @@
 				<a href="https://www.youtube.com/user/istacES" accesskey="y" title="${istacYoutubeTitle}">
 					<img src="theme/images/icons/youtube_20x20.png" title="${istacYoutubeTitle}" alt="Seguir a ISTAC en Youtube (tecla de acceso: y)">
 				</a>
-				<a href="https://public.tableau.com/profile/istac#!/" accesskey="s" title="${istacTableauTitle}">
-					<img src="theme/images/icons/tableau_20.png" title="${istacTableauTitle}" alt="Seguir a ISTAC en Tableau (tecla de acceso: u)">
-				</a>
 			</div>
 		</div>
         
