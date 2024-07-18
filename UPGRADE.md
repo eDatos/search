@@ -8,7 +8,7 @@
 
 *Se deberá realizar primero la actualización de la versión 1.0.0 a la 2.0.0 y luego desde la 2.0.0 a la 3.0.0*
 
-## 5.5.1 a 5.5.2-SNAPSHOT
+## 5.5.1 a 6.0.0
 - Es necesario la actualización de solr a la versión 8.11 previo al despliegue de esta versión. Ver EDATOS-4386
 
 ## 5.5.0 a 5.5.1
