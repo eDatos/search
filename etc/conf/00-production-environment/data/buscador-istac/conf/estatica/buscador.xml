@@ -3,12 +3,12 @@
 <properties>
   <comment>Configuraciones para el BUSCADOR</comment>
   
-  <entry key="istac.idxmanager.solr.endpoint">http://192.168.1.38:8983/solr</entry>
+  <entry key="istac.idxmanager.solr.endpoint">http://estadisticas.arte.internal:8983/solr</entry>
   <!-- entry key="istac.idxmanager.solr.usuario">none</entry-->
   <!-- entry key="istac.idxmanager.solr.password">none</entry-->
-  
-  <entry key="istac.idxmanager.solr.urljaxi">http://192.168.1.38:9080/jaxi-web</entry>
-  <entry key="istac.idxmanager.solr.urlvisualizer">http://localhost/statistical-visualizer/visualizer</entry>
+
+  <entry key="istac.idxmanager.solr.urljaxi">http://estadisticas.arte-consultores.com/jaxi-istac</entry>
+  <entry key="istac.idxmanager.solr.urlvisualizer">http://estadisticas.arte-consultores.com/statistical-visualizer/visualizer</entry>
   
   
   <!-- En caso de usar un servidor Solr instalado en modo "cloud", en esta propiedad se debe especificar el nombre de la coleccion -->
