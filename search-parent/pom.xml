@@ -47,6 +47,7 @@
         <!-- LOGGING -->
         <slf4j.version>1.6.1</slf4j.version>
         <logback.version>0.9.29</logback.version>
+        <edatos-core-utils.version>1.19.0</edatos-core-utils.version>
         
         <!-- COMMONS -->
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -183,6 +184,11 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.siemac.metamac</groupId>
+                <artifactId>edatos-core-utils</artifactId>
+                <version>${edatos-core-utils.version}</version>
             </dependency>
             
             <!-- MISCELLANEOUS -->
