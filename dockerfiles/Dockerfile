@@ -26,7 +26,7 @@ LABEL MAINTAINER=info@arte-consultores.com
 RUN mkdir -p /data/edatos/search/conf
 
 COPY dockerfiles/conf /data/edatos/search/conf
-COPY search-web/target/*.war /usr/local/tomcat/webapps/buscador.war
+COPY search-web/target/*.war /usr/local/tomcat/webapps/search.war
 
 ENV LANG='es_ES.UTF-8'
 ENV SEARCHCONF_PATH='file:/data/edatos/search/conf/environment.xml'
