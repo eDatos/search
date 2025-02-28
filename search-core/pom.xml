@@ -24,7 +24,15 @@
             <groupId>es.gobcan.istac.search-indexer</groupId>
             <artifactId>search-indexer-dao</artifactId>
         </dependency>
-        
+
+        <!-- Dependencia traída desde el search-indexer-domain -->
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>4.2.1</version> <!-- O la versión más reciente -->
+        </dependency>
+
+
         <!-- ARTE CONFIGURATION -->
         <dependency>
             <groupId>com.arte.acom.acom-configuration</groupId>
