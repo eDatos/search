@@ -96,6 +96,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.siemac.metamac</groupId>
+            <artifactId>edatos-core-utils</artifactId>
+            <version>1.19.0</version>
+        </dependency>
 
         <!-- COMMONS -->
         <dependency>
