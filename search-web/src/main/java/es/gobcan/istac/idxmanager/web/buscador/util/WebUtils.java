@@ -163,10 +163,22 @@ public class WebUtils {
     }
 
     public static String getFullURL(HttpServletRequest request, boolean includeQueryString) {
-        StringBuffer requestURL = request.getRequestURL();
+        StringBuilder requestURL = new StringBuilder("//")  // URL relativa al protocolo
+                .append(request.getServerName());
+
+        int port = request.getServerPort();
+        // Solo agregar el puerto si no es el estándar (80 para HTTP, 443 para HTTPS)
+        boolean isStandardPort = (port == 80 || port == 443);
+        if (!isStandardPort) {
+            requestURL.append(":").append(port);
+        }
+
+        requestURL.append(request.getRequestURI());
+
+        // Eliminar "WEB-INF" si está presente
         int indexOfWEBINF = requestURL.indexOf("WEB-INF");
         if (indexOfWEBINF != -1) {
-            requestURL = new StringBuffer(requestURL.substring(0, indexOfWEBINF));
+            requestURL.setLength(indexOfWEBINF); // Recortar sin crear un nuevo objeto
         }
 
         if (includeQueryString) {
