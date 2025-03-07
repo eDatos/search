@@ -10,7 +10,9 @@
 	<context:component-scan base-package="es.gobcan.istac.idxmanager.web.buscador" />
 
 	<bean id="configurationService" class="com.arte.acom.configuration.ConfigurationServiceImpl">
-		<property name="systemConfigurationFile"><value>classpath:buscador/environment.xml</value></property>
+		<property name="systemConfigurationFile">
+			<value>${SEARCHCONF_PATH:classpath:buscador/environment.xml}</value>
+		</property>
 	</bean>
 
 	<bean id="propertyPlaceholderConfigurer" class="com.arte.acom.configuration.ConfigurationServicePropertyPlaceholderConfigurer">
@@ -18,11 +20,6 @@
 			<ref bean="configurationService" />
 		</property>
 	</bean>
-
-    <!-- Configure externalized logging configuration file -->
-    <bean id="loggingSetup" class="es.gobcan.istac.idxmanager.web.buscador.util.LoggingSetup">
-        <property name="logConfigurationFile" value="${istac.idxmanager.buscador.data.url}/conf/dinamica/logback-buscador-istac.xml" />
-    </bean>
 	
 	<!-- Application Message Bundle -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
