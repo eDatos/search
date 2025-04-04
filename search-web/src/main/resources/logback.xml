@@ -19,7 +19,10 @@
 
     <!-- Avoid logging warning Unable to proxy method ... -->
     <logger name="org.springframework.aop.framework.Cglib2AopProxy" level="ERROR"/>
-  
+
+    <logger name="search" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
