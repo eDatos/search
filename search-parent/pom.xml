@@ -186,6 +186,11 @@
                 <version>${logback.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jul-to-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.siemac.metamac</groupId>
                 <artifactId>edatos-core-utils</artifactId>
                 <version>${edatos-core-utils.version}</version>

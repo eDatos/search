@@ -60,6 +60,10 @@
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
 
+    <listener>
+        <listener-class>es.gobcan.istac.idxmanager.web.buscador.LoggingContextListener</listener-class>
+    </listener>
+
     <jsp-config>
     	<taglib>
             <taglib-uri>http://htmlcompressor.googlecode.com/taglib/compressor</taglib-uri>

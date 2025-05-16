@@ -6,6 +6,9 @@
         <cacheSize>500</cacheSize>
         <expireAfterWriteSeconds>900</expireAfterWriteSeconds>
     </turboFilter>
+    
+    <!-- JSP Errors -->
+<!--     <logger name="org.apache.catalina.core.ContainerBase" level="ERROR"/> -->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
