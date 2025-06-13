@@ -22,14 +22,14 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log log = LogFactory.getLog(WebUtils.class);
+    protected static Log         log                = LogFactory.getLog(WebUtils.class);
 
     @Autowired
     private ConfigurationService configurationService;
 
-    private String urlPublicacionJaxi = null;
-    private String urlPxJaxi = null;
-    private String urlPxJaxiDescarga = null;
+    private String               urlPublicacionJaxi = null;
+    private String               urlPxJaxi          = null;
+    private String               urlPxJaxiDescarga  = null;
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
@@ -163,7 +163,7 @@ public class WebUtils {
     }
 
     public static String getFullURL(HttpServletRequest request, boolean includeQueryString) {
-        StringBuilder requestURL = new StringBuilder("//")  // URL relativa al protocolo
+        StringBuilder requestURL = new StringBuilder("//") // URL relativa al protocolo
                 .append(request.getServerName());
 
         int port = request.getServerPort();
