@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.arte.acom.configuration.ConfigurationService;
 
-import es.gobcan.istac.idxmanager.core.util.ApplicationContextProvider;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
 import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
@@ -30,6 +29,8 @@ public class WebUtils {
     private String               urlPublicacionJaxi = null;
     private String               urlPxJaxi          = null;
     private String               urlPxJaxiDescarga  = null;
+    // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
+    private String               urlVisualizer      = null;
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
@@ -67,15 +68,23 @@ public class WebUtils {
         return urlPxJaxiDescarga;
     }
 
-    public static String generatetUrlMetamacStatisticalVisualizer(SolrDocument item) {
+    public String getUrlVisualizer() {
+        if (StringUtils.isEmpty(urlVisualizer)) {
+            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty("istac.idxmanager.solr.urlvisualizer"));
+            if (buff.charAt(buff.length() - 1) != '/') {
+                buff.append("/");
+            }
+            urlVisualizer = buff.toString();
+        }
+        return urlVisualizer;
+    }
+
+    public static String generatetUrlMetamacStatisticalVisualizer(SolrDocument item, String statVisualizer) {
         String fieldValue = (String) item.getFieldValue(IndexacionEnumDomain.NM_TYPE.getCampo());
         TypeNMDomain typeNMDomain = TypeNMDomain.fromSiglas(fieldValue);
         if (typeNMDomain == null) {
             return null;
         }
-
-        ConfigurationService configurationService = (ConfigurationService) ApplicationContextProvider.getApplicationContext().getBean("configurationService");
-        String statVisualizer = configurationService.getProperties().getProperty("istac.idxmanager.solr.urlvisualizer");
 
         switch (typeNMDomain) {
             case DATASET_DSC:
