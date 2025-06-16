@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.arte.acom.configuration.ConfigurationService;
 
+import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
 import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
@@ -21,20 +22,20 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log         log                = LogFactory.getLog(WebUtils.class);
+    protected static Log         log                                 = LogFactory.getLog(WebUtils.class);
 
     @Autowired
     private ConfigurationService configurationService;
 
-    private String               urlPublicacionJaxi = null;
-    private String               urlPxJaxi          = null;
-    private String               urlPxJaxiDescarga  = null;
+    private String               urlPublicacionJaxi                  = null;
+    private String               urlPxJaxi                           = null;
+    private String               urlPxJaxiDescarga                   = null;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
-    private String               urlVisualizer      = null;
+    private String               urlVisualizer                       = null;
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty("istac.idxmanager.solr.urljaxi"));
+            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
             if (buff.charAt(buff.length() - 1) != '/') {
                 buff.append("/");
             }
@@ -46,7 +47,7 @@ public class WebUtils {
 
     public String getUrlPxJaxi() {
         if (StringUtils.isEmpty(urlPxJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty("istac.idxmanager.solr.urljaxi"));
+            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
             if (buff.charAt(buff.length() - 1) != '/') {
                 buff.append("/");
             }
@@ -58,7 +59,7 @@ public class WebUtils {
 
     public String getUrlPxJaxiDescarga() {
         if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty("istac.idxmanager.solr.urljaxi"));
+            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
             if (buff.charAt(buff.length() - 1) != '/') {
                 buff.append("/");
             }
@@ -70,7 +71,7 @@ public class WebUtils {
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty("istac.idxmanager.solr.urlvisualizer"));
+            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER));
             if (buff.charAt(buff.length() - 1) != '/') {
                 buff.append("/");
             }
