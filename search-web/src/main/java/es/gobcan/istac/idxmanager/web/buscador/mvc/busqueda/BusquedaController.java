@@ -161,6 +161,7 @@ public class BusquedaController {
         model.addAttribute("urlPublicacionJaxi", webUtils.getUrlPublicacionJaxi());
         model.addAttribute("urlPxJaxi", webUtils.getUrlPxJaxi());
         model.addAttribute("urlPxJaxiDescarga", webUtils.getUrlPxJaxiDescarga());
+        model.addAttribute("urlVisualizer", webUtils.getUrlVisualizer());
 
         // Texto a mostrar en la nube de Facets Seleccionados para los Facet que tienen mapping por código
         model.addAttribute("subAreaFilterSelectTitle", filtrosComponent.getFiltroSeccionAreaMap().get(busqueda.getSubCodFF()));
