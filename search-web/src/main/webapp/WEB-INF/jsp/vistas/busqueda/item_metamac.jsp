@@ -11,8 +11,8 @@
 <div class="resultado_busqueda">
 <h3 class="resultado_titulo">
 <c:choose>
-	<c:when test="${item['nm_type'] eq 'DSC'}"><a href='<%=WebUtils.generatetUrlMetamacStatisticalVisualizer((SolrDocument)pageContext.getAttribute("item"))%>'>${item['nm_title'][0]}</a></c:when>
-	<c:when test="${item['nm_type'] eq 'DSP'}"><a href='<%=WebUtils.generatetUrlMetamacStatisticalVisualizer((SolrDocument)pageContext.getAttribute("item"))%>'>${item['nm_title'][0]}</a></c:when>
+	<c:when test="${item['nm_type'] eq 'DSC'}"><a href='<%=WebUtils.generatetUrlMetamacStatisticalVisualizer((SolrDocument)pageContext.getAttribute("item"), (String) request.getAttribute("urlVisualizer"))%>'>${item['nm_title'][0]}</a></c:when>
+	<c:when test="${item['nm_type'] eq 'DSP'}"><a href='<%=WebUtils.generatetUrlMetamacStatisticalVisualizer((SolrDocument)pageContext.getAttribute("item"), (String) request.getAttribute("urlVisualizer"))%>'>${item['nm_title'][0]}</a></c:when>
 	<c:otherwise>
 		${item['nm_title'][0]}
 	</c:otherwise>
