@@ -18,6 +18,11 @@
         <property name="coreOrCollection" value="${istac.idxmanager.solr.core_or_collection}" />
         <property name="cloudServer" value="${istac.idxmanager.solr.cloud_server_enabled}" />
 	</bean>
+    <bean id="searchConfiguration" class="es.gobcan.istac.idxmanager.core.conf.SearchConfigurationImpl">
+        <property name="systemConfigurationFile">
+            <value>classpath:metamac/environment.xml</value>
+        </property>
+    </bean>
 
     <!-- Acceso al contexto de Spring desde cualquier sitio -->
     <bean id="contextApplicationContextProvider" class="es.gobcan.istac.idxmanager.core.util.ApplicationContextProvider"></bean>  

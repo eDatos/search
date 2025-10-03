@@ -47,7 +47,7 @@
         <!-- LOGGING -->
         <slf4j.version>1.6.1</slf4j.version>
         <logback.version>0.9.29</logback.version>
-        <edatos-core-utils.version>1.19.0</edatos-core-utils.version>
+        <edatos-core-utils.version>1.23.1-SNAPSHOT</edatos-core-utils.version>
         
         <!-- COMMONS -->
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -150,7 +150,11 @@
                 <artifactId>solr-solrj</artifactId>
                 <version>${solar.version}</version>
             </dependency>
-            
+            <dependency>
+	            <groupId>org.siemac.metamac</groupId>
+	            <artifactId>metamac-core-common</artifactId>
+	            <version>8.7.1-SNAPSHOT</version>
+	        </dependency>
              <!-- COMMONS -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
