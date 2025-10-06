@@ -37,12 +37,6 @@
             <artifactId>metamac-core-common</artifactId>
         </dependency>
 
-        <!-- ARTE CONFIGURATION -->
-        <dependency>
-            <groupId>com.arte.acom.acom-configuration</groupId>
-            <artifactId>acom-configuration</artifactId>
-        </dependency>
-
         <!-- SOLR -->
         <dependency>
             <groupId>org.apache.solr</groupId>

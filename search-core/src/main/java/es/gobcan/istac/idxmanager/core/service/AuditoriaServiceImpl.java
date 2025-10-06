@@ -9,12 +9,8 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.arte.acom.configuration.ConfigurationService;
-
-import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.core.util.CSVFormatFactory;
 import es.gobcan.istac.idxmanager.core.util.JSR310DateTimeFormatters;
 import es.gobcan.istac.idxmanager.domain.mvc.Busqueda;
@@ -26,8 +22,8 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
     protected static String      AUDITORIA = "auditoria";
 
-    @Autowired
-    private ConfigurationService configurationService;
+//    @Autowired
+//    private ConfigurationService configurationService;
 
     @Override
     public void auditar(Busqueda busquedausuario) {
@@ -71,25 +67,26 @@ public class AuditoriaServiceImpl implements AuditoriaService {
     }
 
     private File getAuditFile(ZonedDateTime now) throws IOException {
-        String dataUrl = configurationService.getProperties().getProperty(Constantes.BUSCADOR_DATA_URL);
+//        String dataUrl = configurationService.getProperties().getProperty(Constantes.BUSCADOR_DATA_URL);
 
         String fileName = JSR310DateTimeFormatters.formatInYYYYMM(now);
 
-        StringBuilder fullPath = new StringBuilder(dataUrl);
-        if (!dataUrl.endsWith("/")) {
-            fullPath.append("/");
-        }
-        fullPath.append(AUDITORIA).append("/").append(fileName).append(".csv");
-
-        File auditFile = new File(fullPath.toString());
-        if (!auditFile.exists()) {
-            // Crear cabecera
-            CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat());
-            csvFilePrinter.printRecord(getCsvHeader());
-            csvFilePrinter.close();
-        }
-
-        return auditFile;
+//        StringBuilder fullPath = new StringBuilder(dataUrl);
+//        if (!dataUrl.endsWith("/")) {
+//            fullPath.append("/");
+//        }
+//        fullPath.append(AUDITORIA).append("/").append(fileName).append(".csv");
+//
+//        File auditFile = new File(fullPath.toString());
+//        if (!auditFile.exists()) {
+//            // Crear cabecera
+//            CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat());
+//            csvFilePrinter.printRecord(getCsvHeader());
+//            csvFilePrinter.close();
+//        }
+//
+//        return auditFile;
+        return null;
     }
     private ArrayList<String> getCsvHeader() {
         ArrayList<String> header = new ArrayList<String>();

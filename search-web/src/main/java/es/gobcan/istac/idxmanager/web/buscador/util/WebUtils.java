@@ -7,13 +7,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.solr.common.SolrDocument;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.arte.acom.configuration.ConfigurationService;
-
-import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
 import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
@@ -24,8 +20,8 @@ public class WebUtils {
 
     protected static Log         log                                 = LogFactory.getLog(WebUtils.class);
 
-    @Autowired
-    private ConfigurationService configurationService;
+//    @Autowired
+//    private ConfigurationService configurationService;
 
     private String               urlPublicacionJaxi                  = null;
     private String               urlPxJaxi                           = null;
@@ -35,47 +31,47 @@ public class WebUtils {
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("menu.do?uripub=");
-            urlPublicacionJaxi = buff.toString();
+//            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
+//            if (buff.charAt(buff.length() - 1) != '/') {
+//                buff.append("/");
+//            }
+//            buff.append("menu.do?uripub=");
+//            urlPublicacionJaxi = buff.toString();
         }
         return urlPublicacionJaxi;
     }
 
     public String getUrlPxJaxi() {
         if (StringUtils.isEmpty(urlPxJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("tabla.do?uripx=");
-            urlPxJaxi = buff.toString();
+//            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
+//            if (buff.charAt(buff.length() - 1) != '/') {
+//                buff.append("/");
+//            }
+//            buff.append("tabla.do?uripx=");
+//            urlPxJaxi = buff.toString();
         }
         return urlPxJaxi;
     }
 
     public String getUrlPxJaxiDescarga() {
         if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("descarga.do?uripx=");
-            urlPxJaxiDescarga = buff.toString();
+//            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
+//            if (buff.charAt(buff.length() - 1) != '/') {
+//                buff.append("/");
+//            }
+//            buff.append("descarga.do?uripx=");
+//            urlPxJaxiDescarga = buff.toString();
         }
         return urlPxJaxiDescarga;
     }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            urlVisualizer = buff.toString();
+//            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER));
+//            if (buff.charAt(buff.length() - 1) != '/') {
+//                buff.append("/");
+//            }
+//            urlVisualizer = buff.toString();
         }
         return urlVisualizer;
     }

@@ -213,13 +213,6 @@
                 <artifactId>commons-csv</artifactId>
                 <version>${commons-csv.version}</version>
             </dependency>
-            
-            <!-- ARTE CONFIGURATION -->
-            <dependency>
-                <groupId>com.arte.acom.acom-configuration</groupId>
-                <artifactId>acom-configuration</artifactId>
-                <version>${acom-configuration.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

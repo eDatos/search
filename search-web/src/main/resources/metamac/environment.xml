@@ -7,7 +7,4 @@
 	<entry key="environment.metamac.configuration.db.url">jdbc:postgresql:thin:@FILL_ME_WITH_HOST:FILL_ME_WITH_PORT/FILL_ME_WITH_DB_NAME</entry>
 	<entry key="environment.metamac.configuration.db.driver_name">org.postgresql.Driver</entry>
     
-    <!-- Additional configuration -->
-    <entry key="environment.metamac.portal.installation_type">FILL_ME</entry> <!-- Posibles valores: INTERNAL / EXTERNAL -->
-
 </properties>
