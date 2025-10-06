@@ -7,9 +7,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.solr.common.SolrDocument;
+import org.siemac.metamac.core.common.exception.MetamacException;
+import org.siemac.metamac.core.common.util.ApplicationContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import es.gobcan.istac.idxmanager.core.conf.SearchConfiguration;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
 import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
@@ -22,6 +26,9 @@ public class WebUtils {
 
 //    @Autowired
 //    private ConfigurationService configurationService;
+
+    @Autowired
+    private SearchConfiguration searchConfiguration;
 
     private String               urlPublicacionJaxi                  = null;
     private String               urlPxJaxi                           = null;
@@ -166,6 +173,18 @@ public class WebUtils {
         }
 
         return urlBuilder.toString();
+    }
+
+    public static String getHeader() {
+        SearchConfiguration se= ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+        String propiedad = "";
+        try {
+            propiedad = se.findProperty("metamac.app.style.header.url");
+        } catch (MetamacException e) {
+            log.error("WebUtils::getHeader: " + e);
+            return "";
+        }
+        return propiedad;
     }
 
     public static String getFullURL(HttpServletRequest request, boolean includeQueryString) {
