@@ -12,32 +12,6 @@ Sobrescritura estilos gobierno
 	width: 315px;
 }
 
-#migas ul li strong {
-	color: #000000;
-	font-weight: bold;
-}
-
-#migas p {
-	float: right;
-	padding: 9px 5px 0px 17px;
-	margin: 0px;
-}
-
-#migas p a img {
-	height: 14px;
-	width: 14px;
-}
-
-#migas .redes_sociales {
-	float: right;
-	margin-top: 7px;
-}
-
-#migas .redes_sociales a {
-	margin-left: 2px;
-	text-decoration: none;
-}
-
 .subseccion2 {
 	margin: 0 13px 0 0;
 	width: 47%;

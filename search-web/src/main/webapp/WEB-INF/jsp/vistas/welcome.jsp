@@ -15,12 +15,7 @@
 
   <body>
     <div id="principal_interior">
-    	<c:import url="/WEB-INF/jsp/layout/cabecera.jsp"></c:import> 
-    	
-  		<c:import url="/WEB-INF/jsp/layout/migas.jsp">
-			<c:param name="enlace" value="about:blank"></c:param>	
-			<c:param name="texto">texto</c:param>
-		</c:import>
+    	<c:import url="/WEB-INF/jsp/layout/cabecera.jsp"></c:import>
 		
 		<div id="bloq_interior">
             <div class="conten">

@@ -31,12 +31,12 @@ public class WebUtils {
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            // StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            // if (buff.charAt(buff.length() - 1) != '/') {
-            // buff.append("/");
-            // }
-            // buff.append("menu.do?uripub=");
-            // urlPublicacionJaxi = buff.toString();
+//             StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
+//             if (buff.charAt(buff.length() - 1) != '/') {
+//             buff.append("/");
+//             }
+//             buff.append("menu.do?uripub=");
+//             urlPublicacionJaxi = buff.toString();
         }
         return urlPublicacionJaxi;
     }
