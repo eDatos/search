@@ -3,10 +3,23 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="es.gobcan.istac.idxmanager.web.buscador.util.WebUtils" %>
 	<!-- PIE DE PÁGINA -->
-    <div id="pie_istac">
-      <c:set var="extHeaderUrl" value="<%=WebUtils.getFooter()%>" />
-	  <c:catch var="headerErr">
-		<c:import url="${extHeaderUrl}" var="rawHeader" charEncoding="UTF-8" />
-	  </c:catch>
-    </div>
+<div id="pie_istac">
+	<c:set var="extFooterUrl" value="<%=WebUtils.getFooter()%>" />
+	<c:catch var="headerErr">
+		<c:import url="${extFooterUrl}" var="rawFooter" charEncoding="UTF-8" />
+	</c:catch>
+	<c:choose>
+		<c:when test="${empty headerErr}">
+			<c:set var="h1" value="${fn:replace(rawFotter,'href=\"/','href=\"https://estadisticas.arte-consultores.com/')}" />
+			<c:set var="h2" value="${fn:replace(h1,'src=\"/','src=\"https://estadisticas.arte-consultores.com/')}" />
+			${h2}
+		</c:when>
+			<c:otherwise>
+			<!-- Fallback local + salida del error para depurar -->
+			<jsp:include page="/WEB-INF/jsp/layout/_header-local.jsp"/>
+			<!-- quita esto en prod -->
+			<pre style="color:#c00">${headerErr}</pre>
+		</c:otherwise>
+	</c:choose>
+</div>
 

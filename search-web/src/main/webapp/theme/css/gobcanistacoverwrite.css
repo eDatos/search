@@ -926,7 +926,6 @@ div#tweets form {
 	border: 0;
 }
 
-#pie_istac 			{background-color:#ffdf61;font-size:0.8em;float:left;height:26px;margin:10px 0 0;width:100%;vertical-align:middle;display:inline;}
 #pie_istac .izda 		{color:#000;float:left;padding:6px 0 6px 16px;margin:0;width:40%;display:inline;}
 #pie_istac .dcha 		{float:right;padding:6px 16px 6px 0;margin:0;text-align:right; width:50%;display:inline;}
 #pie_istac .dcha a 		{color:#000; text-decoration:none;  margin-right:7px;}
