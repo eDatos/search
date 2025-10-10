@@ -46,7 +46,6 @@
                                 </span>
                             </c:otherwise>
                         </c:choose>
-                        <span class="entreSel"></span>
                         <% 
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSC");
                         %>
@@ -62,7 +61,6 @@
     			 			  	</span>
     						</c:otherwise>
     					</c:choose>
-    					<span class="entreSel"></span>
                         <% 
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSP");
                         %>
@@ -80,7 +78,6 @@
     					</c:choose>
                         <c:if test="${1 < 0}">
                         	<fmt:message key="pagina.busqueda.complementaria" var="complementaria" />
-        					<span class="entreSel"></span>
                             <% 
                                 busquedaPestaniaWrapper.getBusqueda().setPestania("COMP"); //poner pestania de complementari
                             %>
@@ -99,7 +96,7 @@
                         </c:if>
     	              </div>
     				  
-    				  <div class="conten">
+    				  <div class="conten_result">
                         <div style="float:right">
                             <span class="istac-bs input-group-btn">
                               <button id="btnExpandInfo" type="button" class="btn-link"><i id="iExpandInfo" class="glyphicon glyphicon-eye-close"></i>

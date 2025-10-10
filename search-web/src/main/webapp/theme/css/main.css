@@ -21,6 +21,7 @@
 
 .resultado_titulo {
 	border-bottom: none !important;
+	padding-top:5px;
 }
 
 .resultado_item {
@@ -38,6 +39,7 @@
 }
 
 #opcion_ordenacion {
+	padding-left: 5px !important;
 	font-size:  0.9em;
 	margin-right: 20px;
 	margin-top: 2em;
@@ -54,7 +56,7 @@
 }
 
 .resultado_titulo  a:link {
-	color:#036 !important; 
+	color: black !important;
 	text-decoration:none !important;
 }
 
@@ -96,6 +98,7 @@
 #busqueda .custom-input-group {
     position: relative;
     padding-right: 73px;
+    border-color: var(--brand) !important;
 }
 
 #busqueda #userQuery {
@@ -125,6 +128,7 @@
 
 #busqueda {
     margin-bottom: 0;
+    padding-top: 10px;
 }
 
 /* Fix for open event padding */
@@ -439,9 +443,9 @@ h2.filtrado {
 /****************************************************/
 
 .pestanias {
-    border-bottom: 1px solid #D7D7D7;
-    height: 25px;
+    height: 9px;
     margin: 1px;
+    background-color: #e5ecf9;
 }
 
 /* Select2 body align for text */
@@ -452,4 +456,12 @@ h2.filtrado {
 /* Select2 delete cross fix */
 .select2-container--bootstrap .select2-selection__clear {
     position: relative;
+}
+
+.pestSel a, .pestSel input {
+    font: 1em Arial, Helvetica, sans-serif;
+    color: #B12818;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }

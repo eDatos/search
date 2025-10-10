@@ -22,4 +22,11 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/jquery.qtip-2.2.1.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/istac-bs/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/select2-4.0.0.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/i18n/select2-4.0.0.es.min.js"></script>
+<script type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/custom.js"></script>
 

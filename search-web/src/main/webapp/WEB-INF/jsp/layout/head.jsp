@@ -9,22 +9,11 @@
 		<meta name="keywords" content="gobierno canarias" />
 		<meta name="description" content="Instituto Canario de Estadística" />
 		<meta http-equiv="imagetoolbar" content="no" />
-  		
-        
-        <!-- Gobierno de Canarias -->
-        <link rel="shortcut icon" href="//www.gobiernodecanarias.org/gcc/img/favicon.ico"/>
-                
-        <link href="//www.gobiernodecanarias.org/gcc/css/estilos.css" rel="stylesheet" type="text/css" media="screen"/>
-        <link href="//www.gobiernodecanarias.org/gcc/css/imprime.css" rel="stylesheet" type="text/css" media="print"/>
-        <link href="//www.gobiernodecanarias.org/gcc/css/voz.css" rel="stylesheet" type="text/css" media="aural"/>
-        
-	 	<!-- Hojas de estilo -->
-        <link rel="stylesheet" href="//www.gobiernodecanarias.org/gc/css/buscador.css"/>
-        <link rel="stylesheet" href="//www.gobiernodecanarias.org/gc/css/google.css"/>
 
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/gobcanoverwrite.css"/>
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/gobcanistacoverwrite.css"/>
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/paginadorsimple.css"/>
+		<link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/search-overrides.css">
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/istac-bs/css/istac-bs.css"/>
