@@ -97,14 +97,16 @@
     	              </div>
     				  
     				  <div class="conten_result">
-                        <div style="float:right">
+    				  <div class="cabecera_div">
+                        <div style="float:right;padding-top:20px">
                             <span class="istac-bs input-group-btn">
                               <button id="btnExpandInfo" type="button" class="btn-link"><i id="iExpandInfo" class="glyphicon glyphicon-eye-close"></i>
                                 <span><fmt:message key="pagina.busqueda.menos_detalle" /></span><span style="display: none"><fmt:message key="pagina.busqueda.mas_detalle" /></span>
                               </button>
                             </span>
                         </div>
-    					  <%@ include file="/WEB-INF/jsp/vistas/busqueda/ordenacion.jsp" %>
+    					<%@ include file="/WEB-INF/jsp/vistas/busqueda/ordenacion.jsp" %>
+    					</div>
     		 			  <%@ include file="/WEB-INF/jsp/vistas/busqueda/paginacion.jsp" %>
     		 			  
     		 			  <c:forEach var="item" items="${suggestedDocumentList}">

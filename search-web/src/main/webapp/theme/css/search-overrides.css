@@ -53,22 +53,34 @@ body{
 
 /* -------- Barra de búsqueda (pill) -------- */
 #search-control{
-  display:flex;align-items:center;gap:.5rem;
-  background:#fff;border:1px solid var(--border);
-  border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:5px;
+  box-shadow:var(--shadow);
 }
 #search-control .form-control{
-  border:0;box-shadow:none;background:transparent;
-  padding:10px 8px;font-size:16px;
+  border:0;
+  box-shadow:none;
+  background:transparent;
+  font-size:16px;
 }
 #search-control .form-control::placeholder{color:#9aa7b6;}
-#search-control .btn-primary{background:var(--brand);border-color:var(--brand);border-radius:10px;}
-#search-control .btn-primary:hover{background:var(--brand-600);border-color:var(--brand-600);}
+#search-control .btn-primary{
+	background:var(--brand);
+	border-color:var(--brand);
+	border-radius:5px;
+}
+#search-control .btn-primary:hover{
+	background:var(--brand-600);
+	border-color:var(--brand-600);
+}
 
 /* -------- Tarjetas de resultados -------- */
 .resultado_busqueda{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--rad);box-shadow:var(--shadow);
+  background:var(--surface);
   padding:20px 24px;margin:16px 0;
 }
 /* título */
@@ -111,7 +123,8 @@ body{
 .resultado_busqueda .resultado_titulo,
 .resultado_busqueda .resultado_titulo a{
   margin-left: 0 !important;
-  padding-left: 5px !important;
+  padding-left: 10px !important;
+  padding-right: 20px !important;
   text-indent: 0 !important;
 }
 
@@ -121,18 +134,12 @@ body{
   content: none !important;
 }
 
-/* el resumen también puede traer padding-left (lo vimos: 10px) */
-.resultado_busqueda .resultado_item{
-  padding: 10px 0 0 0 !important;  /* sin sangría izquierda */
-  margin-left: 0 !important;
-  border-left: 0 !important;
-}
-
 /* por si existe un “highlight/separador” con sangría/borde */
 .resultado_busqueda .resultado_item_highlight,
 .resultado_busqueda .resultado_item_sep{
   margin-left: 0 !important;
-  padding-left: 5px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   border-left: 0 !important;
 }
 
@@ -217,7 +224,7 @@ body::after{
 
 .pest, .pestSel{
   display: inline-block;         /* por si el HTML es <span> */
-  border-radius: 10px 10px 0 0;  /* TL TR BR BL */
+  border-radius: 5px 5px 0 0;  /* TL TR BR BL */
   padding: 6px 14px;
 }
 
@@ -227,4 +234,10 @@ body::after{
 
 .conten {
     background-color: #e5ecf9;
+}
+
+.cabecera_div {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
