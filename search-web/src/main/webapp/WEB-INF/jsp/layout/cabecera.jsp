@@ -4,9 +4,14 @@
 <%@ page import="org.siemac.metamac.core.common.util.InternationalizationUtils" %>
 <%@include file="../util/taglibs.jsp"%>
 <%String internationalizationCookie = InternationalizationUtils.getInstance().getInternationalizationCookieId(); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
+
 
 <div id="cabecera">
-<p><fmt:message key="app.version" /></p>
+<fmt:setBundle basename="application" var="appVersion" />
+
   <c:set var="extHeaderUrl" value="<%=WebUtils.getHeader()%>" />
   <c:catch var="headerErr">
     <c:import url="${extHeaderUrl}" var="rawHeader" charEncoding="UTF-8" />
@@ -18,9 +23,8 @@
       </c:param>
 	  <c:param name="<%= internationalizationCookie %>" value="es" />
 	  <c:param name="appId" value="search"/>
-      <c:param name="appVersion" value="1.0" />
 	  <c:param name="appVersion">
-        <fmt:message key="app.version" />
+        <fmt:message bundle="${appVersion}" key="app.version" />
       </c:param>
     </c:import>
   </c:if>
