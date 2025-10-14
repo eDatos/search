@@ -89,9 +89,12 @@ body{
 .resultado_titulo a:hover{color:var(--brand-600);text-decoration:underline;}
 /* resumen: sin punteados ni sangría heredada */
 .resultado_busqueda .resultado_item{
-  color:var(--muted);font-size:14px;
-  padding:10px 0 0 0!important;      /* antes: 6px 0 1px 10px */
-  margin:0!important;border:0!important;background:transparent!important;
+  color:var(--muted);
+  font-size:14px;
+  padding:10px 20px 10px 20px!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
 }
 .resultado_busqueda .resultado_item::before{content:none!important;}
 .resultado_busqueda .resultado_item p{margin:0!important;}
