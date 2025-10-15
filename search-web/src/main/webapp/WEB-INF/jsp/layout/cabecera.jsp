@@ -13,6 +13,7 @@
 <fmt:setBundle basename="application" var="appVersion" />
 
   <c:set var="extHeaderUrl" value="<%=WebUtils.getHeader()%>" />
+  <c:set var="apiKey" value="<%=WebUtils.getApiKey()%>" />
   <c:catch var="headerErr">
     <c:import url="${extHeaderUrl}" var="rawHeader" charEncoding="UTF-8" />
   </c:catch>
@@ -26,6 +27,7 @@
 	  <c:param name="appVersion">
         <fmt:message bundle="${appVersion}" key="app.version" />
       </c:param>
+	  <c:param name="apiKey" value="${apiKey}"/>
     </c:import>
   </c:if>
 </div>

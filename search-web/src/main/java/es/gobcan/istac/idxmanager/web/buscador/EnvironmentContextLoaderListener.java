@@ -5,12 +5,12 @@ import java.net.MalformedURLException;
 import java.util.Properties;
 
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.web.context.ContextLoaderListener;
 
 public class EnvironmentContextLoaderListener extends ContextLoaderListener {
+    @Override
     public void contextInitialized(javax.servlet.ServletContextEvent event) {
         Resource resource = getConfigurationResource();
         Properties props = new Properties();
@@ -19,8 +19,6 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        System.setProperty("environment.metamac.portal.installation_type", props.getProperty("environment.metamac.portal.installation_type"));
         super.contextInitialized(event);
     }
 
@@ -32,12 +30,12 @@ public class EnvironmentContextLoaderListener extends ContextLoaderListener {
         }
 
         // 2. Si no existe, buscamos el archivo definido en la variable de entorno
-        String envPath = System.getenv("STATISTICAL_VISUALIZAZER_CONF_PATH");
+        String envPath = System.getenv("SEARCH_CONF_PATH");
         if (envPath != null && !envPath.isEmpty()) {
             try {
                 return new UrlResource(envPath);
             } catch (MalformedURLException e) {
-                throw new RuntimeException("Invalid path in STATISTICAL_VISUALIZAZER_CONF_PATH: " + envPath, e);
+                throw new RuntimeException("Invalid path in SEARCH_CONF_PATH: " + envPath, e);
             }
         }
 

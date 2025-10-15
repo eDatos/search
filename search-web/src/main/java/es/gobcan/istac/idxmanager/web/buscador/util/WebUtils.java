@@ -168,6 +168,18 @@ public class WebUtils {
         return urlBuilder.toString();
     }
 
+    public static String getApiKey() {
+        SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+        String propiedad = "";
+        try {
+            propiedad = searchConfiguration.findProperty("search.web.api_key");
+        } catch (MetamacException e) {
+            log.error("WebUtils::getApiKey: " + e);
+            return "";
+        }
+        return propiedad;
+    }
+
     public static String getHeader() {
         SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
         String propiedad = "";
@@ -186,7 +198,7 @@ public class WebUtils {
         try {
             propiedad = searchConfiguration.findProperty("metamac.app.style.footer.url");
         } catch (MetamacException e) {
-            log.error("WebUtils::getHeader: " + e);
+            log.error("WebUtils::getFooter: " + e);
             return "";
         }
         return propiedad;
