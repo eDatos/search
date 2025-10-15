@@ -190,38 +190,3 @@
            
 		});
 
-		// Comprobaciones y binding robusto
-(function () {
-  // 1) ¿Se cargó el archivo?
-  console.log('[custom.js] cargado');
-
-  // 2) Cuando el DOM esté listo
-  $(function () {
-    console.log('[custom.js] DOM listo');
-
-    // 3) Si el botón puede renderizarse dinámicamente, usa delegación
-    $(document).on('click', '#openAdvanceSearch', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      // <-- TEST: confirma que la función se ejecuta
-      alert('click en #openAdvanceSearch');  // quítalo después
-      console.log('click en #openAdvanceSearch', this);
-
-      // lógica original: alternar clase "open" en el contenedor
-      var $container = $(this).closest('.dropdown, .dropdown-lg, .btn-group');
-      $container.toggleClass('open');
-
-      // copiar valor del input
-      $('#filtroTextoQuery').val($('#busqueda #userQuery').val());
-    });
-
-    // 4) Cerrar al hacer click fuera (sirve para .dropdown, .dropdown-lg y .btn-group)
-    $(document).on('click', function (e) {
-      $('.dropdown.open, .dropdown-lg.open, .btn-group.open').removeClass('open');
-    });
-
-    // 5) ¿Existe el botón?
-    console.log('#openAdvanceSearch encontrados:', $('#openAdvanceSearch').length);
-  });
-})();
