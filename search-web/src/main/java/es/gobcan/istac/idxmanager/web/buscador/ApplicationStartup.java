@@ -34,8 +34,6 @@ public class ApplicationStartup extends ApplicationStartupListener {
             throw new RuntimeException(e);
         }
         super.contextInitialized(sce);
-
-        //
     }
 
     @Override

@@ -89,7 +89,8 @@ body{
 .resultado_titulo a:hover{color:var(--brand-600);text-decoration:underline;}
 /* resumen: sin punteados ni sangría heredada */
 .resultado_busqueda .resultado_item{
-  color:var(--muted);
+  color:black;
+  font-weight: lighter;
   font-size:14px;
   padding:10px 20px 10px 20px!important;
   margin:0!important;

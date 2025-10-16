@@ -10,8 +10,6 @@
 		<meta name="description" content="Instituto Canario de Estadística" />
 		<meta http-equiv="imagetoolbar" content="no" />
 
-        <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/gobcanoverwrite.css"/>
-        <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/gobcanistacoverwrite.css"/>
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/paginadorsimple.css"/>
 		<link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/search-overrides.css">
 
