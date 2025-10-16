@@ -22,52 +22,13 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log         log                                 = LogFactory.getLog(WebUtils.class);
+    protected static Log         log           = LogFactory.getLog(WebUtils.class);
 
     @Autowired
     private ConfigurationService configurationService;
 
-    private String               urlPublicacionJaxi                  = null;
-    private String               urlPxJaxi                           = null;
-    private String               urlPxJaxiDescarga                   = null;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
-    private String               urlVisualizer                       = null;
-
-    public String getUrlPublicacionJaxi() {
-        if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("menu.do?uripub=");
-            urlPublicacionJaxi = buff.toString();
-        }
-        return urlPublicacionJaxi;
-    }
-
-    public String getUrlPxJaxi() {
-        if (StringUtils.isEmpty(urlPxJaxi)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("tabla.do?uripx=");
-            urlPxJaxi = buff.toString();
-        }
-        return urlPxJaxi;
-    }
-
-    public String getUrlPxJaxiDescarga() {
-        if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
-            }
-            buff.append("descarga.do?uripx=");
-            urlPxJaxiDescarga = buff.toString();
-        }
-        return urlPxJaxiDescarga;
-    }
+    private String               urlVisualizer = null;
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {

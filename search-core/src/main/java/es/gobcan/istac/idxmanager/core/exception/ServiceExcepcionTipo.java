@@ -7,15 +7,11 @@ import java.util.Map;
 import es.gobcan.istac.idxmanager.domain.util.LocaleUtil;
 
 public enum ServiceExcepcionTipo {
+
     //@formatter:off
     SERVICE_GENERAL,
     // SERVICE_ABRIR_SESION,
     // SERVICE_PARSEAR_RECURSO,
-    // SERVICE_TICKET_ALFRESCO,
-    // SERVICE_CONTENIDO_NUCLEO_ALFRESCO,
-    // SERVICE_NODO_NUCLEO_METADATOS_ALFRESCO,
-    // SERVICE_NODE_CONTENT_ALFRESCO,
-    // SERVICE_RECURSOS_PUBLICADOS_ALFRESCO,
     // SERVICE_REINDEXACION,
     // SERVICE_REINDEXACION_INPROGRESS,
     // SERVICE_REINDEXACION_RECOMENDADOS,
@@ -30,11 +26,6 @@ public enum ServiceExcepcionTipo {
         MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_GENERAL, "excepcion.service.general");
         // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_ABRIR_SESION, "excepcion.service.abrir_sesion");
         // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_PARSEAR_RECURSO, "excepcion.service.parsear_recurso");
-        // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_TICKET_ALFRESCO, "excepcion.service.ticket_alfresco");
-        // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_CONTENIDO_NUCLEO_ALFRESCO, "excepcion.service.contenido_nucleo_alfresco");
-        // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_NODO_NUCLEO_METADATOS_ALFRESCO, "excepcion.service.nodo_metadatos_alfresco");
-        // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_NODE_CONTENT_ALFRESCO, "excepcion.service.node_content_alfresco");
-        // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_RECURSOS_PUBLICADOS_ALFRESCO, "excepcion.service.recursos_publicados_alfresco");
         // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_REINDEXACION, "excepcion.service.reindexacion");
         // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_REINDEXACION_INPROGRESS, "excepcion.service.reindexacion.inprogress");
         // MENSAJE_MAP.put(ServiceExcepcionTipo.SERVICE_REINDEXACION_RECOMENDADOS, "excepcion.service.reindexacion.recomendados");

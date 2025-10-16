@@ -7,7 +7,6 @@
   <!-- entry key="istac.idxmanager.solr.usuario">none</entry-->
   <!-- entry key="istac.idxmanager.solr.password">none</entry-->
 
-  <entry key="istac.idxmanager.solr.urljaxi">http://estadisticas.arte-consultores.com/jaxi-istac</entry>
   <entry key="istac.idxmanager.solr.urlvisualizer">http://estadisticas.arte-consultores.com/statistical-visualizer/visualizer</entry>
   
   
