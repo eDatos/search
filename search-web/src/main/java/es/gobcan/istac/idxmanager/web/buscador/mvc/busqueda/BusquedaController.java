@@ -146,6 +146,9 @@ public class BusquedaController {
         return "busqueda/lista";
     }
     private void cleanHighlightingList(QueryResponse queryResponse) {
+        if (queryResponse == null || queryResponse.getHighlighting() == null) {
+            return;
+        }
         Whitelist whiteList = new Whitelist();
         for (Map.Entry<String, Map<String, List<String>>> entry : queryResponse.getHighlighting().entrySet()) {
             if (entry.getValue().get(NM_DESCRIPTION) != null) {
