@@ -46,6 +46,9 @@ body{
     max-width: 100%;
     margin: 0  var(--edatos-spacing-x-page);
     background: white;
+    margin-top: var(--edatos-spacing-y-l);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
 }
 /* Evita que wrappers antiguos repinten fondos */
 #bloq_interior,#contenido,#page,.wrap,.maquetacion{background:transparent!important;}
@@ -70,7 +73,7 @@ body{
 #search-control .btn-primary{
     background:var(--brand);
     border-color:var(--brand);
-    border-radius:5px;
+    border-radius: 0 5px 5px 0;
 }
 #search-control .btn-primary:hover{
     background:var(--brand-600);
@@ -80,7 +83,8 @@ body{
 /* -------- Tarjetas de resultados -------- */
 .resultado_busqueda{
   background:var(--surface);
-  padding:20px 24px;margin:16px 0;
+  padding:20px 24px;
+  /* margin:16px 0; */
 }
 /* título */
 .resultado_titulo{margin:0 0 8px;font-size:18px;line-height:1.3;font-weight:600;}
@@ -91,7 +95,7 @@ body{
   color:black;
   font-weight: lighter;
   font-size:14px;
-  padding:10px 20px 10px 20px!important;
+  /* padding:10px 20px 10px 20px!important; */
   margin:0!important;
   border:0!important;
   background:transparent!important;
@@ -111,7 +115,7 @@ body{
 .resultado_busqueda .btn-primary:hover{background:var(--brand-600);border-color:var(--brand-600);}
 
 /* -------- Paginación -------- */
-.paginadorWrapper{margin:16px 0;}
+.paginadorWrapper{border-bottom: 1px solid #ccc;padding-bottom: var(--edatos-spacing-y-l);margin: var(--edatos-spacing-y-l) var(--edatos-spacing-x-m);var(letter-spacing: normal);}
 .paginador{display:flex;gap:8px;align-items:center;padding-left: 5px !important;}
 .paginador a{color:var(--brand-700);padding:4px 8px;border-radius:8px;text-decoration:none;}
 .paginador a:hover{background:var(--brand-100);}
@@ -139,7 +143,7 @@ body{
 .resultado_busqueda .resultado_item_highlight,
 .resultado_busqueda .resultado_item_sep{
   margin-left: 0 !important;
-  padding-left: 20px !important;
+  /* padding-left: 20px !important; */
   padding-right: 20px !important;
   border-left: 0 !important;
 }
@@ -232,6 +236,7 @@ body::after{
 
 .conten {
     background-color: #e5ecf9;
+    border-radius: 10px;
 }
 
 .cabecera_div {
