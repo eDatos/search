@@ -1,5 +1,6 @@
 package es.gobcan.istac.idxmanager.web.buscador.mvc.busqueda;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +13,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +36,8 @@ import es.gobcan.istac.idxmanager.web.buscador.validation.BusquedaValidator;
 
 @Controller
 public class BusquedaController {
+
+    private static final String NM_DESCRIPTION = "nm_description";
 
     protected Log            log                                  = LogFactory.getLog(BusquedaController.class);
 
@@ -136,9 +141,22 @@ public class BusquedaController {
                 return "/busqueda";
             }
         }
-
+        cleanHighlightingList(queryResponse);
         processBindingModel(solrDocumentList, solrSuggestedDocumentList, queryResponse, model, busqueda);
         return "busqueda/lista";
+    }
+    private void cleanHighlightingList(QueryResponse queryResponse) {
+        Whitelist whiteList = new Whitelist();
+        for (Map.Entry<String, Map<String, List<String>>> entry : queryResponse.getHighlighting().entrySet()) {
+            if (entry.getValue().get(NM_DESCRIPTION) != null) {
+                List<String> descriptions = new ArrayList<>();
+                for (String description : entry.getValue().get(NM_DESCRIPTION)) {
+                    descriptions.add(Jsoup.clean(description, whiteList));
+                }
+                entry.getValue().get(NM_DESCRIPTION).clear();
+                entry.getValue().get(NM_DESCRIPTION).addAll(descriptions);
+            }
+        }
     }
 
     private void processBindingModel(SolrDocumentList solrDocumentList, SolrDocumentList solrSuggestedDocumentList, QueryResponse queryResponse, Model model, Busqueda busqueda) {

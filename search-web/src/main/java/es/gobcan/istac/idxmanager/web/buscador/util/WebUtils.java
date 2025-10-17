@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import es.gobcan.istac.idxmanager.core.conf.SearchConfiguration;
+import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
 import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
@@ -33,47 +34,84 @@ public class WebUtils {
 
     public String getUrlPublicacionJaxi() {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            // StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            // if (buff.charAt(buff.length() - 1) != '/') {
-            // buff.append("/");
-            // }
-            // buff.append("menu.do?uripub=");
-            // urlPublicacionJaxi = buff.toString();
+            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            try {
+                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                if (!StringUtils.isEmpty(propiedad)) {
+                    StringBuilder buff = new StringBuilder(propiedad);
+                    if (buff.charAt(buff.length() - 1) != '/') {
+                        buff.append("/");
+                    }
+                    buff.append("menu.do?uripub=");
+                    urlPublicacionJaxi = buff.toString();
+                }
+            } catch (MetamacException e) {
+                log.error("WebUtils::getUrlPublicacionJaxi: " + e);
+                return null;
+            }
         }
         return urlPublicacionJaxi;
     }
 
     public String getUrlPxJaxi() {
         if (StringUtils.isEmpty(urlPxJaxi)) {
-            // StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            // if (buff.charAt(buff.length() - 1) != '/') {
-            // buff.append("/");
-            // }
-            // buff.append("tabla.do?uripx=");
-            // urlPxJaxi = buff.toString();
+            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            try {
+                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                if (!StringUtils.isEmpty(propiedad)) {
+                    StringBuilder buff = new StringBuilder(propiedad);
+                    if (buff.charAt(buff.length() - 1) != '/') {
+                        buff.append("/");
+                    }
+                    buff.append("tabla.do?uripx=");
+                    urlPxJaxi = buff.toString();
+                }
+            } catch (MetamacException e) {
+                log.error("WebUtils::getUrlPxJaxi: " + e);
+                return null;
+            }
         }
         return urlPxJaxi;
     }
 
     public String getUrlPxJaxiDescarga() {
         if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
-            // StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI));
-            // if (buff.charAt(buff.length() - 1) != '/') {
-            // buff.append("/");
-            // }
-            // buff.append("descarga.do?uripx=");
-            // urlPxJaxiDescarga = buff.toString();
+            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            try {
+                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                if (!StringUtils.isEmpty(propiedad)) {
+                    StringBuilder buff = new StringBuilder(propiedad);
+                    if (buff.charAt(buff.length() - 1) != '/') {
+                        buff.append("/");
+                    }
+                    buff.append("descarga.do?uripx=");
+                    urlPxJaxiDescarga = buff.toString();
+                }
+            } catch (MetamacException e) {
+                log.error("WebUtils::getUrlPxJaxiDescarga: " + e);
+                return null;
+            }
         }
         return urlPxJaxiDescarga;
     }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            // StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER));
-            // if (buff.charAt(buff.length() - 1) != '/') {
-            // buff.append("/");
-            // }
-            // urlVisualizer = buff.toString();
+            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            try {
+
+                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER);
+                if (!StringUtils.isEmpty(propiedad)) {
+                    StringBuilder buff = new StringBuilder(propiedad);
+                    if (buff.charAt(buff.length() - 1) != '/') {
+                        buff.append("/");
+                    }
+                    urlVisualizer = buff.toString();
+                }
+            } catch (MetamacException e) {
+                log.error("WebUtils::getUrlVisualizer: " + e);
+                return null;
+            }
         }
         return urlVisualizer;
     }
@@ -174,7 +212,7 @@ public class WebUtils {
         if (apiKey == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                apiKey = searchConfiguration.findProperty("search.web.api_key");
+                apiKey = searchConfiguration.findProperty(Constantes.SEARCH_API_KEY);
             } catch (MetamacException e) {
                 log.error("WebUtils::getApiKey: " + e);
                 return "";
@@ -187,7 +225,7 @@ public class WebUtils {
         if (header == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                header = searchConfiguration.findProperty("metamac.app.style.header.url");
+                header = searchConfiguration.findProperty(Constantes.HEADER_URL);
             } catch (MetamacException e) {
                 log.error("WebUtils::getHeader: " + e);
                 return "";
@@ -200,7 +238,7 @@ public class WebUtils {
         if (footer == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                footer = searchConfiguration.findProperty("metamac.app.style.footer.url");
+                footer = searchConfiguration.findProperty(Constantes.FOOTER_URL);
             } catch (MetamacException e) {
                 log.error("WebUtils::getFooter: " + e);
                 return "";
