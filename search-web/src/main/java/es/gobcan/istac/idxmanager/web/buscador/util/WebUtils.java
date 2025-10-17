@@ -225,7 +225,7 @@ public class WebUtils {
         if (header == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                header = searchConfiguration.retrieveProperty(Constantes.HEADER_URL);
+                header = searchConfiguration.retrieveAppStyleHeaderUrl();
             } catch (MetamacException e) {
                 log.error("WebUtils::getHeader: " + e);
                 return "";
@@ -238,7 +238,7 @@ public class WebUtils {
         if (footer == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                footer = searchConfiguration.retrieveProperty(Constantes.FOOTER_URL);
+                footer = searchConfiguration.retrieveAppStyleFooterUrl();
             } catch (MetamacException e) {
                 log.error("WebUtils::getFooter: " + e);
                 return "";
