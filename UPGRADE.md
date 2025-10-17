@@ -8,6 +8,11 @@
 
 *Se deberá realizar primero la actualización de la versión 1.0.0 a la 2.0.0 y luego desde la 2.0.0 a la 3.0.0*
 
+## 6.2.2 a 6.2.3-SNAPSHOT
+- Se han realizado cambios a la base de datos, por ello se proveen una serie de scripts SQL para adaptarse a la nueva versión. 
+  Ejecutar los scripts de la siguiente ruta en el esquema correspondiente por orden de fecha: [etc/changes-from-release/6.2.2/db/common-metadata/postgresql/](etc/changes-from-release/6.2.2/db/common-metadata/postgresql)
+- Se ha quitado propiedad "istac.idxmanager.solr.urljaxi" en el proyecto de sistemas. Por lo que hay que quitarla del archivo de propiedades del proyecto. Es una propiedad del GPE del istac por lo que es posible que esté configurada sólo en ISTAC. Atención!!! El fichero a modificar puede que se encuentre externalizado en el data o en el proyecto de sistemas en función de si el cliente tiene la aplicación desplegada en docker
+
 ## 5.5.1 a 6.0.1
 - Es necesario la actualización de solr a la versión 8.11 previo al despliegue de esta versión. Ver EDATOS-4386
 

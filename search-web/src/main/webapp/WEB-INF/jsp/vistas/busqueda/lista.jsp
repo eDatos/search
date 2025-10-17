@@ -114,9 +114,6 @@
     		              </c:forEach>
     		
     		              <c:forEach var="item" items="${documentList}" begin="0" end="${resultByPage}">
-    		              		<c:if test="${item['origen_recurso'] eq 'GPE'}">
-    		              			<%@ include file="/WEB-INF/jsp/vistas/busqueda/item_gpe.jsp" %>
-    		              		</c:if>
     		              		<c:if test="${item['origen_recurso'] eq 'WEB'}">
     		              			<%@ include file="/WEB-INF/jsp/vistas/busqueda/item_web.jsp" %>
     		              		</c:if>

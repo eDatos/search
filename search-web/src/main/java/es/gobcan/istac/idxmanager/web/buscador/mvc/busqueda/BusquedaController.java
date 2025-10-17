@@ -175,10 +175,6 @@ public class BusquedaController {
         model.addAttribute("resultByPage", RESULTS_BY_PAGE);
         model.addAttribute("numResult", ((SolrDocumentList) queryResponse.getResponse().get("response")).getNumFound());
 
-        // Útiles para construcción de enlaces a Jaxi
-        model.addAttribute("urlPublicacionJaxi", webUtils.getUrlPublicacionJaxi());
-        model.addAttribute("urlPxJaxi", webUtils.getUrlPxJaxi());
-        model.addAttribute("urlPxJaxiDescarga", webUtils.getUrlPxJaxiDescarga());
         model.addAttribute("urlVisualizer", webUtils.getUrlVisualizer());
 
         // Texto a mostrar en la nube de Facets Seleccionados para los Facet que tienen mapping por código

@@ -26,74 +26,8 @@ public class WebUtils {
     private static String header;
     private static String footer;
     private static String apiKey;
-    private String        urlPublicacionJaxi = null;
-    private String        urlPxJaxi          = null;
-    private String        urlPxJaxiDescarga  = null;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
     private String        urlVisualizer      = null;
-
-    public String getUrlPublicacionJaxi() {
-        if (StringUtils.isEmpty(urlPublicacionJaxi)) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
-            try {
-                String propiedad = searchConfiguration.retrieveProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
-                if (!StringUtils.isEmpty(propiedad)) {
-                    StringBuilder buff = new StringBuilder(propiedad);
-                    if (buff.charAt(buff.length() - 1) != '/') {
-                        buff.append("/");
-                    }
-                    buff.append("menu.do?uripub=");
-                    urlPublicacionJaxi = buff.toString();
-                }
-            } catch (MetamacException e) {
-                log.error("WebUtils::getUrlPublicacionJaxi: " + e);
-                return null;
-            }
-        }
-        return urlPublicacionJaxi;
-    }
-
-    public String getUrlPxJaxi() {
-        if (StringUtils.isEmpty(urlPxJaxi)) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
-            try {
-                String propiedad = searchConfiguration.retrieveProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
-                if (!StringUtils.isEmpty(propiedad)) {
-                    StringBuilder buff = new StringBuilder(propiedad);
-                    if (buff.charAt(buff.length() - 1) != '/') {
-                        buff.append("/");
-                    }
-                    buff.append("tabla.do?uripx=");
-                    urlPxJaxi = buff.toString();
-                }
-            } catch (MetamacException e) {
-                log.error("WebUtils::getUrlPxJaxi: " + e);
-                return null;
-            }
-        }
-        return urlPxJaxi;
-    }
-
-    public String getUrlPxJaxiDescarga() {
-        if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
-            try {
-                String propiedad = searchConfiguration.retrieveProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
-                if (!StringUtils.isEmpty(propiedad)) {
-                    StringBuilder buff = new StringBuilder(propiedad);
-                    if (buff.charAt(buff.length() - 1) != '/') {
-                        buff.append("/");
-                    }
-                    buff.append("descarga.do?uripx=");
-                    urlPxJaxiDescarga = buff.toString();
-                }
-            } catch (MetamacException e) {
-                log.error("WebUtils::getUrlPxJaxiDescarga: " + e);
-                return null;
-            }
-        }
-        return urlPxJaxiDescarga;
-    }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
