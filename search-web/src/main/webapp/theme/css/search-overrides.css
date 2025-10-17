@@ -47,7 +47,7 @@ body{
     margin: 0  var(--edatos-spacing-x-page);
     background: white;
     margin-top: var(--edatos-spacing-y-l);
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: var(--shadow);
 }
 /* Evita que wrappers antiguos repinten fondos */
@@ -218,7 +218,7 @@ body::after{
 
 .pest input, .pestSel input {
     font: 1em Arial, Helvetica, sans-serif;
-    color: #888;
+    color: var(--edatos-color-dark-blue-50);
     border: none;
     background-color: #e5ecf9;
     cursor: pointer;
@@ -236,7 +236,7 @@ body::after{
 
 .conten {
     background-color: #e5ecf9;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .cabecera_div {
