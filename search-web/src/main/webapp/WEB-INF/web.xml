@@ -51,14 +51,6 @@
 	<listener>
 		<listener-class>es.gobcan.istac.idxmanager.web.buscador.ApplicationStartup</listener-class>
 	</listener>
-<!-- 	<context-param> -->
-<!-- 		<param-name>contextConfigLocation</param-name> -->
-<!-- 		<param-value>/WEB-INF/config/spring/applicationContext.xml</param-value> -->
-<!-- 	</context-param> -->
-
-<!-- 	<listener> -->
-<!-- 		<listener-class>es.gobcan.istac.idxmanager.web.buscador.EnvironmentContextLoaderListener</listener-class> -->
-<!-- 	</listener> -->
 
 	<!-- Handles all requests into the application -->
 	<servlet>
