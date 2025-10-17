@@ -60,9 +60,7 @@
         
         <!-- CSV -->
         <commons-csv.version>1.5</commons-csv.version>
-        
-        <!-- ARTE CONFIGURATION -->
-        <acom-configuration.version>1.0.1</acom-configuration.version>
+        <metamac-core-common.version>8.7.1-SNAPSHOT</metamac-core-common.version>
     </properties>
 
     <dependencyManagement>
@@ -153,7 +151,7 @@
             <dependency>
 	            <groupId>org.siemac.metamac</groupId>
 	            <artifactId>metamac-core-common</artifactId>
-	            <version>8.7.1-SNAPSHOT</version>
+	            <version>${metamac-core-common.version}</version>
 	        </dependency>
              <!-- COMMONS -->
             <dependency>
