@@ -36,7 +36,7 @@ public class WebUtils {
         if (StringUtils.isEmpty(urlPublicacionJaxi)) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                String propiedad = searchConfiguration.retrievePropertyByName(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
@@ -57,7 +57,7 @@ public class WebUtils {
         if (StringUtils.isEmpty(urlPxJaxi)) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                String propiedad = searchConfiguration.retrievePropertyByName(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
@@ -78,7 +78,7 @@ public class WebUtils {
         if (StringUtils.isEmpty(urlPxJaxiDescarga)) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
+                String propiedad = searchConfiguration.retrievePropertyByName(Constantes.ISTAC_IDXMANAGER_SOLR_URLJAXI);
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
@@ -100,7 +100,7 @@ public class WebUtils {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
 
-                String propiedad = searchConfiguration.findProperty(Constantes.VISUALIZADOR_URL);
+                String propiedad = searchConfiguration.retrievePropertyByName(Constantes.VISUALIZADOR_URL);
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
@@ -212,7 +212,7 @@ public class WebUtils {
         if (apiKey == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                apiKey = searchConfiguration.findProperty(Constantes.SEARCH_API_KEY);
+                apiKey = searchConfiguration.retrievePropertyByName(Constantes.SEARCH_API_KEY);
             } catch (MetamacException e) {
                 log.error("WebUtils::getApiKey: " + e);
                 return "";
@@ -225,7 +225,7 @@ public class WebUtils {
         if (header == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                header = searchConfiguration.findProperty(Constantes.HEADER_URL);
+                header = searchConfiguration.retrievePropertyByName(Constantes.HEADER_URL);
             } catch (MetamacException e) {
                 log.error("WebUtils::getHeader: " + e);
                 return "";
@@ -238,7 +238,7 @@ public class WebUtils {
         if (footer == null) {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
-                footer = searchConfiguration.findProperty(Constantes.FOOTER_URL);
+                footer = searchConfiguration.retrievePropertyByName(Constantes.FOOTER_URL);
             } catch (MetamacException e) {
                 log.error("WebUtils::getFooter: " + e);
                 return "";

@@ -10,7 +10,12 @@ public class SearchConfigurationImpl extends ConfigurationServiceImpl implements
     private static Logger log = LoggerFactory.getLogger(SearchConfigurationImpl.class);
 
     @Override
-    public String retrieveProperty(String property) throws MetamacException {
+    public String retrievePropertyByName(String property) throws MetamacException {
+        return retrieveProperty(property);
+    }
+    
+    @Override
+    public String getProperty(String property) throws MetamacException {
         return (String) environmentConfigurationProperties.getProperty(property);
     }
 }
