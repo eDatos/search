@@ -43,10 +43,9 @@ body{
     background:#f3f3f3;
 }
 #centercontainer{
-	width:var(--center-width);
-	max-width: 100%;
-	margin:0 auto;
-	background: white;
+    max-width: 100%;
+    margin: 0  var(--edatos-spacing-x-page);
+    background: white;
 }
 /* Evita que wrappers antiguos repinten fondos */
 #bloq_interior,#contenido,#page,.wrap,.maquetacion{background:transparent!important;}
@@ -69,13 +68,13 @@ body{
 }
 #search-control .form-control::placeholder{color:#9aa7b6;}
 #search-control .btn-primary{
-	background:var(--brand);
-	border-color:var(--brand);
-	border-radius:5px;
+    background:var(--brand);
+    border-color:var(--brand);
+    border-radius:5px;
 }
 #search-control .btn-primary:hover{
-	background:var(--brand-600);
-	border-color:var(--brand-600);
+    background:var(--brand-600);
+    border-color:var(--brand-600);
 }
 
 /* -------- Tarjetas de resultados -------- */
@@ -119,7 +118,7 @@ body{
 .paginador .this-page{background:var(--brand);color:#fff;padding:4px 8px;border-radius:8px;font-weight:600;}
 
 #opcion_ordenacion {
-	padding-left: 5px !important;
+    padding-left: 5px !important;
 }
 
 /* ===== Alinear título y resumen con el borde interno de la card ===== */
@@ -127,8 +126,6 @@ body{
 .resultado_busqueda .resultado_titulo,
 .resultado_busqueda .resultado_titulo a{
   margin-left: 0 !important;
-  padding-left: 10px !important;
-  padding-right: 20px !important;
   text-indent: 0 !important;
 }
 
@@ -189,11 +186,10 @@ body::after{
 .pestSel {
     float: left;
     text-align: center;
-    width: 13em;
-    border: 1px solid #B9B9B9;
     border-bottom: 1px solid #fff;
     background: #fff url(../img/backgSel.gif) repeat-x bottom;
     min-height: 25px;
+    font-weight: 800;
 }
 
 .entreSel {
@@ -209,11 +205,9 @@ body::after{
 .pest {
     float: left;
     text-align: center;
-    width: 13em;
     background-color: rgb(229, 236, 249);
     height: 25px;
     border-width: 1px;
-    border-style: solid;
     border-color: rgb(215, 215, 215);
     border-image: initial;
 }
@@ -241,7 +235,7 @@ body::after{
 }
 
 .cabecera_div {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
 }
