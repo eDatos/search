@@ -47,7 +47,6 @@ body{
     margin: 0  var(--edatos-spacing-x-page);
     background: white;
     margin-top: var(--edatos-spacing-y-l);
-    /* border-radius: 10px; */
     box-shadow: var(--shadow);
 }
 /* Evita que wrappers antiguos repinten fondos */
@@ -84,7 +83,6 @@ body{
 .resultado_busqueda{
   background:var(--surface);
   padding:20px 24px;
-  /* margin:16px 0; */
 }
 /* título */
 .resultado_titulo{margin:0 0 8px;font-size:18px;line-height:1.3;font-weight:600;}
@@ -95,7 +93,6 @@ body{
   color:black;
   font-weight: lighter;
   font-size:14px;
-  /* padding:10px 20px 10px 20px!important; */
   margin:0!important;
   border:0!important;
   background:transparent!important;
@@ -143,7 +140,6 @@ body{
 .resultado_busqueda .resultado_item_highlight,
 .resultado_busqueda .resultado_item_sep{
   margin-left: 0 !important;
-  /* padding-left: 20px !important; */
   padding-right: 20px !important;
   border-left: 0 !important;
 }
@@ -236,7 +232,6 @@ body::after{
 
 .conten {
     background-color: #e5ecf9;
-    /* border-radius: 10px; */
 }
 
 .cabecera_div {
