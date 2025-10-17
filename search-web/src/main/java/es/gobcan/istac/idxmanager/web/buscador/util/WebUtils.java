@@ -100,7 +100,7 @@ public class WebUtils {
             SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
             try {
 
-                String propiedad = searchConfiguration.findProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER);
+                String propiedad = searchConfiguration.findProperty(Constantes.VISUALIZADOR_URL);
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
