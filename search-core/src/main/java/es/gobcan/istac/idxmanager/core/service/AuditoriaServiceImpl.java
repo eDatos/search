@@ -71,7 +71,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
         SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
         try {
 
-            String dataUrl = searchConfiguration.getProperty(Constantes.BUSCADOR_DATA_URL);
+            String dataUrl = searchConfiguration.retrieveProperty(Constantes.BUSCADOR_DATA_URL);
 
             String fileName = JSR310DateTimeFormatters.formatInYYYYMM(now);
 
