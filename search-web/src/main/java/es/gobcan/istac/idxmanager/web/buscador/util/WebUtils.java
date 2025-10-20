@@ -22,16 +22,24 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log  log                = LogFactory.getLog(WebUtils.class);
-    private static String header;
-    private static String footer;
-    private static String apiKey;
+    protected static Log               log           = LogFactory.getLog(WebUtils.class);
+    private static String              header;
+    private static String              footer;
+    private static String              apiKey;
+    private static SearchConfiguration searchConfiguration;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
-    private String        urlVisualizer      = null;
+    private String                     urlVisualizer = null;
+
+    private static SearchConfiguration getSearchConfiguration() {
+        if (searchConfiguration == null) {
+            searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+        }
+        return searchConfiguration ;
+    }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            searchConfiguration = getSearchConfiguration();
             try {
 
                 String propiedad = searchConfiguration.retrieveProperty(Constantes.VISUALIZADOR_URL);
@@ -144,7 +152,7 @@ public class WebUtils {
 
     public static String getApiKey() {
         if (apiKey == null) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            searchConfiguration = getSearchConfiguration();
             try {
                 apiKey = searchConfiguration.retrieveProperty(Constantes.SEARCH_API_KEY);
             } catch (MetamacException e) {
@@ -157,7 +165,7 @@ public class WebUtils {
 
     public static String getHeader() {
         if (header == null) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            searchConfiguration = getSearchConfiguration();
             try {
                 header = searchConfiguration.retrieveAppStyleHeaderUrl();
             } catch (MetamacException e) {
@@ -170,7 +178,7 @@ public class WebUtils {
 
     public static String getFooter() {
         if (footer == null) {
-            SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+            searchConfiguration = getSearchConfiguration();
             try {
                 footer = searchConfiguration.retrieveAppStyleFooterUrl();
             } catch (MetamacException e) {
