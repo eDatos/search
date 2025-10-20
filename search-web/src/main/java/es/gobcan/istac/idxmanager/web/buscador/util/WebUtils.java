@@ -41,8 +41,7 @@ public class WebUtils {
         if (StringUtils.isEmpty(urlVisualizer)) {
             searchConfiguration = getSearchConfiguration();
             try {
-
-                String propiedad = searchConfiguration.retrieveProperty(Constantes.VISUALIZADOR_URL);
+                String propiedad = searchConfiguration.retrievePortalExternalWebApplicationUrlVisualizer();
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
