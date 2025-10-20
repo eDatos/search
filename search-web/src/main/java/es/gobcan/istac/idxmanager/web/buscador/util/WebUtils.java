@@ -7,12 +7,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.solr.common.SolrDocument;
+import org.siemac.metamac.core.common.conf.ConfigurationService;
 import org.siemac.metamac.core.common.exception.MetamacException;
 import org.siemac.metamac.core.common.util.ApplicationContextProvider;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import es.gobcan.istac.idxmanager.core.conf.SearchConfiguration;
 import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
 import es.gobcan.istac.idxmanager.domain.modelo.IndexacionEnumDomain;
@@ -26,22 +26,22 @@ public class WebUtils {
     private static String              header;
     private static String              footer;
     private static String              apiKey;
-    private static SearchConfiguration searchConfiguration;
+    private static ConfigurationService configurationService;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
     private String                     urlVisualizer = null;
 
-    private static SearchConfiguration getSearchConfiguration() {
-        if (searchConfiguration == null) {
-            searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+    private static ConfigurationService getConfigurationService() {
+        if (configurationService == null) {
+            configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
         }
-        return searchConfiguration ;
+        return configurationService ;
     }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            searchConfiguration = getSearchConfiguration();
+            configurationService = getConfigurationService();
             try {
-                String propiedad = searchConfiguration.retrievePortalExternalWebApplicationUrlVisualizer();
+                String propiedad = configurationService.retrievePortalExternalWebApplicationUrlVisualizer();
                 if (!StringUtils.isEmpty(propiedad)) {
                     StringBuilder buff = new StringBuilder(propiedad);
                     if (buff.charAt(buff.length() - 1) != '/') {
@@ -151,9 +151,9 @@ public class WebUtils {
 
     public static String getApiKey() {
         if (apiKey == null) {
-            searchConfiguration = getSearchConfiguration();
+            configurationService = getConfigurationService();
             try {
-                apiKey = searchConfiguration.retrieveProperty(Constantes.SEARCH_API_KEY);
+                apiKey = configurationService.retrieveProperty(Constantes.SEARCH_API_KEY);
             } catch (MetamacException e) {
                 log.error("WebUtils::getApiKey: " + e);
                 return "";
@@ -164,9 +164,9 @@ public class WebUtils {
 
     public static String getHeader() {
         if (header == null) {
-            searchConfiguration = getSearchConfiguration();
+            configurationService = getConfigurationService();
             try {
-                header = searchConfiguration.retrieveAppStyleHeaderUrl();
+                header = configurationService.retrieveAppStyleHeaderUrl();
             } catch (MetamacException e) {
                 log.error("WebUtils::getHeader: " + e);
                 return "";
@@ -177,9 +177,9 @@ public class WebUtils {
 
     public static String getFooter() {
         if (footer == null) {
-            searchConfiguration = getSearchConfiguration();
+            configurationService = getConfigurationService();
             try {
-                footer = searchConfiguration.retrieveAppStyleFooterUrl();
+                footer = configurationService.retrieveAppStyleFooterUrl();
             } catch (MetamacException e) {
                 log.error("WebUtils::getFooter: " + e);
                 return "";

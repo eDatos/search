@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.siemac.metamac.core.common.conf.ConfigurationService;
 import org.siemac.metamac.core.common.exception.MetamacException;
 import org.siemac.metamac.core.common.util.ApplicationContextProvider;
 import org.springframework.stereotype.Service;
 
-import es.gobcan.istac.idxmanager.core.conf.SearchConfiguration;
 import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.core.util.CSVFormatFactory;
 import es.gobcan.istac.idxmanager.core.util.JSR310DateTimeFormatters;
@@ -68,10 +68,10 @@ public class AuditoriaServiceImpl implements AuditoriaService {
     }
 
     private File getAuditFile(ZonedDateTime now) throws IOException {
-        SearchConfiguration searchConfiguration = ApplicationContextProvider.getApplicationContext().getBean(SearchConfiguration.class);
+        ConfigurationService configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
         try {
 
-            String dataUrl = searchConfiguration.retrieveProperty(Constantes.BUSCADOR_DATA_URL);
+            String dataUrl = configurationService.retrieveProperty(Constantes.BUSCADOR_DATA_URL);
 
             String fileName = JSR310DateTimeFormatters.formatInYYYYMM(now);
 
