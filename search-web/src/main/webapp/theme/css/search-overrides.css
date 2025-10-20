@@ -112,7 +112,7 @@ body{
 .resultado_busqueda .btn-primary:hover{background:var(--brand-600);border-color:var(--brand-600);}
 
 /* -------- Paginación -------- */
-.paginadorWrapper{border-bottom: 1px solid #ccc;padding-bottom: var(--edatos-spacing-y-l);margin: var(--edatos-spacing-y-l) var(--edatos-spacing-x-m);var(letter-spacing: normal);}
+.paginadorWrapper{/* border-bottom: 1px solid #ccc; */padding-bottom: var(--edatos-spacing-y-l);margin: var(--edatos-spacing-y-l) var(--edatos-spacing-x-m);var(letter-spacing: normal);}
 .paginador{display:flex;gap:8px;align-items:center;padding-left: 5px !important;}
 .paginador a{color:var(--brand-700);padding:4px 8px;border-radius:8px;text-decoration:none;}
 .paginador a:hover{background:var(--brand-100);}

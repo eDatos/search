@@ -10,10 +10,14 @@
 }
 
 .resultado_busqueda_suggested {
+    border-bottom: 1px solid #ccc;
     margin-bottom: 1em;
-    background-color: #e5ecf9;
+    background-color: rgba(0, 0, 0, 0.05) !important;
     padding-bottom : 5px;
     padding-left: 10px;
+    margin-left: var(--edatos-spacing-x-m);
+    margin-right: var(--edatos-spacing-x-m);
+    border-radius: 5px;
     padding-top: 5px;
 }
 
