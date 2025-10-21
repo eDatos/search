@@ -32,6 +32,12 @@
             <version>74.2</version> <!-- O la versión más reciente -->
         </dependency>
 
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.16</version>
+		</dependency>
+
  		<dependency>
             <groupId>org.siemac.metamac</groupId>
             <artifactId>metamac-core-common</artifactId>
