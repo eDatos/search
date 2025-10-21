@@ -29,7 +29,7 @@ COPY dockerfiles/conf /data/edatos/search/conf
 COPY search-web/target/*.war /usr/local/tomcat/webapps/search.war
 
 ENV LANG='es_ES.UTF-8'
-ENV SEARCHCONF_PATH='file:/data/edatos/search/conf/environment.xml'
+ENV SEARCHCONF_PATH='file:/data/edatos/search/metamac/environment.xml'
 
 RUN env
 
