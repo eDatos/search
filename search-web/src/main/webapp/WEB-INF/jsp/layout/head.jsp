@@ -2,12 +2,12 @@
 <%@page import="es.gobcan.istac.idxmanager.web.buscador.util.WebUtils" %>
 <%@include file="../util/taglibs.jsp"%>
 	<head>
-		<title><fmt:message key="welcome.title" /></title>
+		<title><fmt:message key="<%=WebUtils.getWelcomeTitle()%>" /></title>
 		<meta http-equiv="Content-Type"	content="text/html; charset=UTF-8" />
 		<meta name="robots" content="all" />
 		<meta http-equiv="pragma" content="no-cache" />
-		<meta name="keywords" content="gobierno canarias" />
-		<meta name="description" content="Instituto Canario de Estadística" />
+		<meta name="keywords" content="<%=WebUtils.getAutonomousComunityName()%>" />
+		<meta name="description" content="<%=WebUtils.getInstituteName()%>" />
 		<meta http-equiv="imagetoolbar" content="no" />
 
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/paginadorsimple.css"/>

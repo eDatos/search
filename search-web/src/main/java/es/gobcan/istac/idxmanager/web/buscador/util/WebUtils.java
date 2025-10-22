@@ -22,19 +22,22 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log               log           = LogFactory.getLog(WebUtils.class);
-    private static String              header;
-    private static String              footer;
-    private static String              apiKey;
+    protected static Log                log           = LogFactory.getLog(WebUtils.class);
+    private static String               header;
+    private static String               footer;
+    private static String               apiKey;
+    private static String               instituteName;
+    private static String               autonomousCommunityName;
+    private static String               searchTitle;
     private static ConfigurationService configurationService;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
-    private String                     urlVisualizer = null;
+    private String                      urlVisualizer = null;
 
     private static ConfigurationService getConfigurationService() {
         if (configurationService == null) {
             configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
         }
-        return configurationService ;
+        return configurationService;
     }
 
     public String getUrlVisualizer() {
@@ -186,6 +189,45 @@ public class WebUtils {
             }
         }
         return footer;
+    }
+
+    public static String getInstituteName() {
+        if (instituteName == null) {
+            configurationService = getConfigurationService();
+            try {
+                instituteName = configurationService.retrieveProperty(Constantes.SEARCH_INSTITUTE_NAME);
+            } catch (MetamacException e) {
+                log.error("WebUtils::getFooter: " + e);
+                return "";
+            }
+        }
+        return instituteName;
+    }
+
+    public static String getAutonomousComunityName() {
+        if (autonomousCommunityName == null) {
+            configurationService = getConfigurationService();
+            try {
+                autonomousCommunityName = configurationService.retrieveProperty(Constantes.SEARCH_AUTONOMOUS_COMMUNITY_NAME);
+            } catch (MetamacException e) {
+                log.error("WebUtils::getFooter: " + e);
+                return "";
+            }
+        }
+        return autonomousCommunityName;
+    }
+
+    public static String getWelcomeTitle() {
+        if (searchTitle == null) {
+            configurationService = getConfigurationService();
+            try {
+                searchTitle = configurationService.retrieveProperty(Constantes.SEARCH_TITLE);
+            } catch (MetamacException e) {
+                log.error("WebUtils::getFooter: " + e);
+                return "";
+            }
+        }
+        return searchTitle;
     }
 
     public static String getFullURL(HttpServletRequest request, boolean includeQueryString) {
