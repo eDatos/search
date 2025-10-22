@@ -2,12 +2,12 @@
 <%@page import="es.gobcan.istac.idxmanager.web.buscador.util.WebUtils" %>
 <%@include file="../util/taglibs.jsp"%>
 	<head>
-		<title><fmt:message key="<%=WebUtils.getWelcomeTitle()%>" /></title>
+		<title><%=WebUtils.getWelcomeTitle()%> <fmt:message key="welcome.title" /></title>
 		<meta http-equiv="Content-Type"	content="text/html; charset=UTF-8" />
 		<meta name="robots" content="all" />
 		<meta http-equiv="pragma" content="no-cache" />
-		<meta name="keywords" content="<%=WebUtils.getAutonomousComunityName()%>" />
-		<meta name="description" content="<%=WebUtils.getInstituteName()%>" />
+		<meta name="keywords" content="Buscador del instituto" />
+		<meta name="description" content="Filtre y visualice de manera rápida la información disponible por operaciones estadísticas." />
 		<meta http-equiv="imagetoolbar" content="no" />
 
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/paginadorsimple.css"/>

@@ -26,8 +26,6 @@ public class WebUtils {
     private static String               header;
     private static String               footer;
     private static String               apiKey;
-    private static String               instituteName;
-    private static String               autonomousCommunityName;
     private static String               searchTitle;
     private static ConfigurationService configurationService;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
@@ -191,37 +189,11 @@ public class WebUtils {
         return footer;
     }
 
-    public static String getInstituteName() {
-        if (instituteName == null) {
-            configurationService = getConfigurationService();
-            try {
-                instituteName = configurationService.retrieveProperty(Constantes.SEARCH_INSTITUTE_NAME);
-            } catch (MetamacException e) {
-                log.error("WebUtils::getFooter: " + e);
-                return "";
-            }
-        }
-        return instituteName;
-    }
-
-    public static String getAutonomousComunityName() {
-        if (autonomousCommunityName == null) {
-            configurationService = getConfigurationService();
-            try {
-                autonomousCommunityName = configurationService.retrieveProperty(Constantes.SEARCH_AUTONOMOUS_COMMUNITY_NAME);
-            } catch (MetamacException e) {
-                log.error("WebUtils::getFooter: " + e);
-                return "";
-            }
-        }
-        return autonomousCommunityName;
-    }
-
     public static String getWelcomeTitle() {
         if (searchTitle == null) {
             configurationService = getConfigurationService();
             try {
-                searchTitle = configurationService.retrieveProperty(Constantes.SEARCH_TITLE);
+                searchTitle = configurationService.retrieveOrganisation();
             } catch (MetamacException e) {
                 log.error("WebUtils::getFooter: " + e);
                 return "";
