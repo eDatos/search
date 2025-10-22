@@ -49,6 +49,7 @@
         <logback.version>0.9.29</logback.version>
         <edatos-core-utils.version>1.23.2-SNAPSHOT</edatos-core-utils.version>
         <metamac-core-common.version>8.7.2-SNAPSHOT</metamac-core-common.version>
+        <postgresql.version>42.2.16</postgresql.version>
         
         <!-- COMMONS -->
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -197,7 +198,11 @@
                 <artifactId>edatos-core-utils</artifactId>
                 <version>${edatos-core-utils.version}</version>
             </dependency>
-            
+            <dependency>
+			    <groupId>org.postgresql</groupId>
+			    <artifactId>postgresql</artifactId>
+			    <version>${postgresql.version}</version>
+			</dependency>
             <!-- MISCELLANEOUS -->
             <dependency>
                 <groupId>joda-time</groupId>
