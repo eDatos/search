@@ -5,23 +5,6 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         
-        function restorePreviousSectionFilter() {
-            var section = getParameterByName("filtroSeccion");
-            if (section == "") {
-                $("#filtroSeccionArea").select2("val", null);
-                $("#filtroSeccionOperacion").select2("val", null);
-                $("#filtroSeccion").select2("val", null);
-            }
-            else if (section == 'SUBJECT_AREA') {
-                $("#filtroSeccionOperacion").select2("val", null);
-                swapSection(section);
-            }
-            else if (section == 'SURVEY') {
-                $("#filtroSeccionArea").select2("val", null);
-                swapSection(section);
-            }
-        }
-        
         function swapSection(section) {
             if (section == 'SUBJECT_AREA') {
                 $("#filtroSeccionOperacionContainer").hide();
@@ -185,8 +168,5 @@
                    $('.dropdown, .dropdown-lg').removeClass('open');
                }              
            });
-
-           restorePreviousSectionFilter();
-           
 		});
 
