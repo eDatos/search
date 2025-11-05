@@ -262,9 +262,9 @@
 }
 
 #search-adv .resultado_titulo {
+    background: transparent url(../images/img/flecha_menulat.gif) no-repeat left center;
+    padding-left: 5px;
     font-size: 14px;
-    background: transparent url(../images/img/flecha_menulat.gif) no-repeat scroll left -2px;
-    background-position: 0 0;
 }
 
 .contenido .bloq_izq_grande #search-adv {
