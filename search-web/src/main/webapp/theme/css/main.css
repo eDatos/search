@@ -1,30 +1,33 @@
 /****************************************************/
 /*            RESULTADOS BUSQUEDA                   */
 /****************************************************/
-
-.pest {
-	width : 12em;	
-}
 .resultado_busqueda {
-	margin-bottom: 1.5em;
-	background:url(../images/img/borde_bajo_migas.gif) repeat-x left bottom;
-    padding:0 0 7px;
+    border-bottom: 1px solid #ccc;
+    margin-left: var(--edatos-spacing-x-m);
+    margin-right: var(--edatos-spacing-x-m);
+    border-bottom: 1px solid #ccc;
+    padding: var(--edatos-spacing-y-sm) var(--edatos-spacing-x-sm);
 }
 
 .resultado_busqueda_suggested {
+    border-bottom: 1px solid #ccc;
 	margin-bottom: 1em;
-	background-color: #e5ecf9;
+    background-color: rgba(0, 0, 0, 0.05) !important;
 	padding-bottom : 5px;
 	padding-left: 10px;
+    margin-left: var(--edatos-spacing-x-m);
+    margin-right: var(--edatos-spacing-x-m);
+    border-radius: 5px;
 	padding-top: 5px;
 }
 
 .resultado_titulo {
 	border-bottom: none !important;
+    padding-top:5px;
 }
 
 .resultado_item {
-	padding:  6px 0 1px 10px;
+    padding: var(--edatos-spacing-y-xs) 0;
 }
 
 .resultado_item em{
@@ -38,6 +41,7 @@
 }
 
 #opcion_ordenacion {
+    padding-left: 5px !important;
 	font-size:  0.9em;
 	margin-right: 20px;
 	margin-top: 2em;
@@ -54,8 +58,12 @@
 }
 
 .resultado_titulo  a:link {
-	color:#036 !important; 
+    color: black !important;
 	text-decoration:none !important;
+    font-size: 18px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    line-height: 26px;
 }
 
 .resultado_titulo  a:visited {
@@ -95,7 +103,7 @@
 
 #busqueda .custom-input-group {
     position: relative;
-    padding-right: 73px;
+    border-color: var(--brand) !important;
 }
 
 #busqueda #userQuery {
@@ -112,7 +120,7 @@
     width: 72px;
     position: absolute;
     top: 0;
-    right: 0; 
+    right: -2px;
 }
 
 #busqueda .custom-input-group-btn .dropdown {
@@ -125,6 +133,7 @@
 
 #busqueda {
     margin-bottom: 0;
+    padding: 20px 10px 5px 20px;
 }
 
 /* Fix for open event padding */
@@ -392,9 +401,8 @@ h2.filtrado {
 }
 
 .contenido #userQuery {
-    padding: 3px 18px 3px 4px;
+    padding: var(--edatos-spacing-y-sm) var(--edatos-spacing-x-sm);
     transition: background 0.4s;
-    background: #fff url(data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=) no-repeat right -50px center;
     border-right-color: transparent;
     box-shadow: none;
 }
@@ -440,9 +448,11 @@ h2.filtrado {
 /****************************************************/
 
 .pestanias {
-    border-bottom: 1px solid #D7D7D7;
-    height: 25px;
+    height: 37px;
     margin: 1px;
+    background-color: #e5ecf9;
+    padding-left: 20px;
+    padding-right: 20px
 }
 
 /* Select2 body align for text */
@@ -453,4 +463,12 @@ h2.filtrado {
 /* Select2 delete cross fix */
 .select2-container--bootstrap .select2-selection__clear {
     position: relative;
+}
+.pestSel a, .pestSel input {
+    font: 1em Arial, Helvetica, sans-serif;
+    color: var(--edatos-color-dark-blue-100);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
 }
