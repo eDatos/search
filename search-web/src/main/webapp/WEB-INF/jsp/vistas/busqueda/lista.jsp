@@ -17,34 +17,7 @@
 
   <body>
     <div id="contenido">
-    	<c:import url="/WEB-INF/jsp/layout/cabecera.jsp"></c:import> 
-    	
-    	<!-- MIGAS DE PAN-->
-		<div id="migas">
-			<p class="txt"><fmt:message key="migas.general.estaen" />:</p>		
-			<ul>
-				<li><strong><fmt:message key="pagina.busqueda.busqueda" /></strong></li>
-			</ul>
-			<div class="redes_sociales">
-			<fmt:message key="pagina.busqueda.redes_sociales.rss" var="rssTitle"/>
-				<fmt:message key="pagina.busqueda.redes_sociales.twitter" var="twitterTitle"/>
-				<fmt:message key="pagina.busqueda.redes_sociales.istac" var="istacTitle"/>
-				<fmt:message key="pagina.busqueda.redes_sociales.istacYoutube" var="istacYoutubeTitle"/>
-				<fmt:message key="pagina.busqueda.redes_sociales.istacTableau" var="istacTableauTitle"/>
-				<a href="http://www.gobiernodecanarias.org/istac/herramientas/rss.html" accesskey="r" title="${rssTitle}">
-					<img src="theme/images/icons/rss_20x20.png" title="${rssTitle}" alt="Canales RSS (tecla de acceso: r)">
-				</a>
-				<a href="http://www.gobiernodecanarias.org/istac/twitter" accesskey="t" title="${twitterTitle}">
-					<img src="theme/images/icons/twitter_20x20.png" title="${twitterTitle}" alt="Seguir a istac_es en Twitter (tecla de acceso: t)">
-				</a>
-				<a href="https://www.slideshare.net/ISTAC" accesskey="s" title="${istacTitle}">
-					<img src="theme/images/icons/Slideshare_20x20.png" title="${istacTitle}" alt="Seguir a ISTAC en Slideshare (tecla de acceso: s)">
-				</a>
-				<a href="https://www.youtube.com/user/istacES" accesskey="y" title="${istacYoutubeTitle}">
-					<img src="theme/images/icons/youtube_20x20.png" title="${istacYoutubeTitle}" alt="Seguir a ISTAC en Youtube (tecla de acceso: y)">
-				</a>
-			</div>
-		</div>
+    	<c:import url="/WEB-INF/jsp/layout/cabecera.jsp"></c:import>
         
 		<div id="bloq_interior">
             <div class="contenido">
@@ -73,7 +46,6 @@
                                 </span>
                             </c:otherwise>
                         </c:choose>
-                        <span class="entreSel"></span>
                         <% 
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSC");
                         %>
@@ -89,7 +61,6 @@
     			 			  	</span>
     						</c:otherwise>
     					</c:choose>
-    					<span class="entreSel"></span>
                         <% 
                             busquedaPestaniaWrapper.getBusqueda().setPestania("DSP");
                         %>
@@ -107,7 +78,6 @@
     					</c:choose>
                         <c:if test="${1 < 0}">
                         	<fmt:message key="pagina.busqueda.complementaria" var="complementaria" />
-        					<span class="entreSel"></span>
                             <% 
                                 busquedaPestaniaWrapper.getBusqueda().setPestania("COMP"); //poner pestania de complementari
                             %>
@@ -126,15 +96,17 @@
                         </c:if>
     	              </div>
     				  
-    				  <div class="conten">
-                        <div style="float:right">
+    				  <div class="conten_result">
+    				  <div class="cabecera_div">
+                        <div style="float:right;padding-top:20px">
                             <span class="istac-bs input-group-btn">
                               <button id="btnExpandInfo" type="button" class="btn-link"><i id="iExpandInfo" class="glyphicon glyphicon-eye-close"></i>
                                 <span><fmt:message key="pagina.busqueda.menos_detalle" /></span><span style="display: none"><fmt:message key="pagina.busqueda.mas_detalle" /></span>
                               </button>
                             </span>
                         </div>
-    					  <%@ include file="/WEB-INF/jsp/vistas/busqueda/ordenacion.jsp" %>
+    					<%@ include file="/WEB-INF/jsp/vistas/busqueda/ordenacion.jsp" %>
+    					</div>
     		 			  <%@ include file="/WEB-INF/jsp/vistas/busqueda/paginacion.jsp" %>
     		 			  
     		 			  <c:forEach var="item" items="${suggestedDocumentList}">

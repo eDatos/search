@@ -6,7 +6,7 @@
 <%@page import="org.apache.solr.common.SolrDocument" %>
 
 
-<div class="resultado_busqueda">
+<div class="resultado_busqueda resultado_busqueda_sugested">
 	<h3 class="resultado_titulo">
 	<c:choose>
 		<c:when test="${empty item['nm_title']}"><a href="${item['id']}">${item['id']}</a></c:when>

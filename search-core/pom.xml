@@ -32,11 +32,14 @@
             <version>74.2</version> <!-- O la versión más reciente -->
         </dependency>
 
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		</dependency>
 
-        <!-- ARTE CONFIGURATION -->
-        <dependency>
-            <groupId>com.arte.acom.acom-configuration</groupId>
-            <artifactId>acom-configuration</artifactId>
+ 		<dependency>
+            <groupId>org.siemac.metamac</groupId>
+            <artifactId>metamac-core-common</artifactId>
         </dependency>
 
         <!-- SOLR -->

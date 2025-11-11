@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="   http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.0.xsd   http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   http://www.springframework.org/schema/jee   http://www.springframework.org/schema/jee/spring-jee-3.0.xsd   http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- activates annotation-based bean configuration -->
+	<context:annotation-config />
+
+	<!-- scans for @Components, @Repositories, @Services, ... -->
+	    <context:component-scan base-package="es.gobcan.istac.idxmanager.core" />
+
+    <!-- Metamac environment configuration -->
+    <bean id="configurationService" class="org.siemac.metamac.core.common.conf.ConfigurationServiceImpl">
+        <property name="systemConfigurationFile">
+            <value>${SEARCHCONF_PATH:classpath:metamac/environment.xml}</value>
+        </property>
+    </bean>
+
+	<bean name="solr" class="es.gobcan.istac.idxmanager.core.service.SolrServiceImpl">
+		<property name="solrUrl" value="${istac.idxmanager.solr.endpoint}" />
+        <property name="coreOrCollection" value="${istac.idxmanager.solr.core_or_collection}" />
+        <property name="cloudServer" value="${istac.idxmanager.solr.cloud_server_enabled}" />
+	</bean>
+
+    <bean id="contextApplicationContextProvider" class="org.siemac.metamac.core.common.util.ApplicationContextProvider"></bean>
+</beans>

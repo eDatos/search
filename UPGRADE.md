@@ -8,6 +8,12 @@
 
 *Se deberá realizar primero la actualización de la versión 1.0.0 a la 2.0.0 y luego desde la 2.0.0 a la 3.0.0*
 
+## 6.3.0 a 6.3.1-SNAPSHOT
+- Se han realizado cambios a la base de datos, por ello se proveen una serie de scripts SQL para adaptarse a la nueva versión. 
+  Ejecutar los scripts de la siguiente ruta en el esquema correspondiente por orden de fecha: [etc/changes-from-release/6.3.0/db/common-metadata/postgresql/](etc/changes-from-release/6.3.0/db/common-metadata/postgresql)
+- Eliminar el fichero buscador.xml localizado en la carpeta conf/estatica dentro del diretorio data de la apliación en cada cliente/entorno
+- Modificar el fichero environment.xml del proyecto SISTEMAS para eliminar la propiedad istac.idxmanager.buscador.data.url y añadir las propiedades relativas al configuration service/common-metadata y renombrar la carpeta que tiene como nombre buscador por metamac
+
 ## 6.2.2 a 6.3.0
 - Se han realizado cambios a la base de datos, por ello se proveen una serie de scripts SQL para adaptarse a la nueva versión. 
   Ejecutar los scripts de la siguiente ruta en el esquema correspondiente por orden de fecha: [etc/changes-from-release/6.2.2/db/common-metadata/postgresql/](etc/changes-from-release/6.2.2/db/common-metadata/postgresql)

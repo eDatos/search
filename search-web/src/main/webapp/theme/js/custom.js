@@ -5,23 +5,6 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         
-        function restorePreviousSectionFilter() {
-            var section = getParameterByName("filtroSeccion");
-            if (section == "") {
-                $("#filtroSeccionArea").select2("val", null);
-                $("#filtroSeccionOperacion").select2("val", null);
-                $("#filtroSeccion").select2("val", null);
-            }
-            else if (section == 'SUBJECT_AREA') {
-                $("#filtroSeccionOperacion").select2("val", null);
-                swapSection(section);
-            }
-            else if (section == 'SURVEY') {
-                $("#filtroSeccionArea").select2("val", null);
-                swapSection(section);
-            }
-        }
-        
         function swapSection(section) {
             if (section == 'SUBJECT_AREA') {
                 $("#filtroSeccionOperacionContainer").hide();
@@ -173,21 +156,5 @@
                    $('#search-adv').remove();
                }
            });
-           
-           // Advanced Search: Close (don't use data-toggle="dropdown" of bootstrap)
-           $(document).on('click', function (e) {
-               if (!$('.dropdown, .dropdown-lg').is(e.target) 
-                       && $('.dropdown, .dropdown-lg').has(e.target).length === 0 
-                       && $('.open').has(e.target).length === 0
-               ) {
-                   $("#filtroSeccionArea").select2("close");
-                   $("#filtroSeccionOperacion").select2("close");
-                   $('.dropdown, .dropdown-lg').removeClass('open');
-               }              
-           });
-
-           restorePreviousSectionFilter();
-           
 		});
 
-		
