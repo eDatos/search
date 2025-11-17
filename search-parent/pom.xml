@@ -4,7 +4,7 @@
 
     <groupId>es.gobcan.istac.search</groupId>
     <artifactId>search-parent</artifactId>
-    <version>6.4.0</version>
+    <version>6.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SEARCH :: PARENT</name>
 
