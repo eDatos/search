@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <p><form:errors path="userQuery"/></p>
+        <p class="parrafo_resultado_error"><form:errors path="userQuery"/></p>
     </form:form>
 
     <p></p>

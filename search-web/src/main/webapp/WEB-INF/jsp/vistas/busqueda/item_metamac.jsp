@@ -8,7 +8,7 @@
 <%@page import="es.gobcan.istac.idxmanager.web.buscador.util.WebUtils" %>
 
 
-<div class="resultado_busqueda">
+<div class="resultado_busqueda resultado_busqueda_sugested">
 <h3 class="resultado_titulo">
 <c:choose>
 	<c:when test="${item['nm_type'] eq 'DSC'}"><a href='<%=WebUtils.generatetUrlMetamacStatisticalVisualizer((SolrDocument)pageContext.getAttribute("item"), (String) request.getAttribute("urlVisualizer"))%>'>${item['nm_title'][0]}</a></c:when>

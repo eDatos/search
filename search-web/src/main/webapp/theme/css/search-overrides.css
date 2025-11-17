@@ -1,0 +1,246 @@
+/* ============ EDATOS_3520_MODELO – PARCHE VISUAL (UN SOLO BLOQUE) ============ */
+
+/* -------- Tokens -------- */
+:root{
+  --center-width: 50vw;
+
+  /* Azules EDATOS */
+  --brand:#0b5ea8;
+  --brand-700:#084a83;
+  --brand-600:#0a3f78;
+  --brand-200:#d6e8f6;
+  --brand-100:#e7f1fb;
+
+  /* Texto / superficies / borde */
+  --text:#1f2937;
+  --muted:#5e6b7a;
+  --surface:#ffffff;
+  --border:#dfe7f0;
+
+  /* Layout central (banda) */
+  --center-bg:#f6f9fc;            /* centro */
+  --side-bg:#dfe8f2;              /* laterales */
+
+  --rad:12px;
+  --shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 20px rgba(15,23,42,.06);
+}
+
+/* -------- Fondo por bandas + tipografía -------- */
+html,body{min-height:100%;}
+body{
+  font-family:"Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(220px 60% at left 50%, rgba(15,23,42,.04), transparent 70%),
+    radial-gradient(220px 60% at right 50%, rgba(15,23,42,.04), transparent 70%),
+    linear-gradient(to right,
+      var(--side-bg) 0,
+      var(--side-bg) calc((100vw - var(--center-width))/2),
+      var(--center-bg) calc((100vw - var(--center-width))/2),
+      var(--center-bg) calc(100vw - (100vw - var(--center-width))/2),
+      var(--side-bg)   calc(100vw - (100vw - var(--center-width))/2),
+      var(--side-bg) 100%);
+    background:#f3f3f3;
+}
+#centercontainer{
+    max-width: 100%;
+    margin: 0  var(--edatos-spacing-x-page);
+    background: white;
+    margin-top: var(--edatos-spacing-y-l);
+    box-shadow: var(--shadow);
+}
+/* Evita que wrappers antiguos repinten fondos */
+#bloq_interior,#contenido,#page,.wrap,.maquetacion{background:transparent!important;}
+
+/* -------- Barra de búsqueda (pill) -------- */
+#search-control{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:5px;
+  box-shadow:var(--shadow);
+}
+#search-control .form-control{
+  border:0;
+  box-shadow:none;
+  background:transparent;
+  font-size:16px;
+}
+#search-control .form-control::placeholder{color:#9aa7b6;}
+#search-control .btn-primary{
+    background:var(--brand);
+    border-color:var(--brand);
+    border-radius: 0 5px 5px 0;
+}
+#search-control .btn-primary:hover{
+    background:var(--brand-600);
+    border-color:var(--brand-600);
+}
+
+/* -------- Tarjetas de resultados -------- */
+.resultado_busqueda{
+  background:var(--surface);
+  padding:20px 24px;
+}
+/* título */
+.resultado_titulo{margin:0 0 8px;font-size:18px;line-height:1.3;font-weight:600;}
+.resultado_titulo a{color:var(--brand-700);text-decoration:none;}
+.resultado_titulo a:hover{color:var(--brand-600);text-decoration:underline;}
+/* resumen: sin punteados ni sangría heredada */
+.resultado_busqueda .resultado_item{
+  color:black;
+  font-weight: lighter;
+  font-size:14px;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+.resultado_busqueda .resultado_item::before{content:none!important;}
+.resultado_busqueda .resultado_item p{margin:0!important;}
+/* limpia punteados y hr que vengan de hojas antiguas */
+.resultado_busqueda hr,
+.resultado_busqueda .linea_punteada,
+.resultado_busqueda .resultado_item_sep,
+.resultado_busqueda [style*="dotted"],
+.resultado_busqueda [class*="puntead"]{
+  border:0!important;background:none!important;height:0!important;
+}
+/* botones dentro de la card (si aparecen) */
+.resultado_busqueda .btn-primary{background:var(--brand);border-color:var(--brand);border-radius:10px;}
+.resultado_busqueda .btn-primary:hover{background:var(--brand-600);border-color:var(--brand-600);}
+
+/* -------- Paginación -------- */
+.paginadorWrapper{/* border-bottom: 1px solid #ccc; */padding-bottom: var(--edatos-spacing-y-l);margin: var(--edatos-spacing-y-l) var(--edatos-spacing-x-m);var(letter-spacing: normal);}
+.paginador{display:flex;gap:8px;align-items:center;padding-left: 5px !important;}
+.paginador a{color:var(--brand-700);padding:4px 8px;border-radius:8px;text-decoration:none;}
+.paginador a:hover{background:var(--brand-100);}
+.paginador .this-page{background:var(--brand);color:#fff;padding:4px 8px;border-radius:8px;font-weight:600;}
+
+#opcion_ordenacion {
+    padding-left: 5px !important;
+}
+
+/* ===== Alinear título y resumen con el borde interno de la card ===== */
+/* quita cualquier sangría en el h3 y en el enlace del título */
+.resultado_busqueda .resultado_titulo,
+.resultado_busqueda .resultado_titulo a{
+  margin-left: 0 !important;
+  text-indent: 0 !important;
+}
+
+/* algunos temas meten bullets/sangrías vía pseudo-elemento */
+.resultado_busqueda .resultado_titulo::before,
+.resultado_busqueda .resultado_titulo a::before{
+  content: none !important;
+}
+
+/* por si existe un “highlight/separador” con sangría/borde */
+.resultado_busqueda .resultado_item_highlight,
+.resultado_busqueda .resultado_item_sep{
+  margin-left: 0 !important;
+  padding-right: 20px !important;
+  border-left: 0 !important;
+}
+
+/* elimina cualquier línea punteada o regla superior que empuje el contenido */
+.resultado_busqueda hr,
+.resultado_busqueda .linea_punteada,
+.resultado_busqueda [style*="dotted"],
+.resultado_busqueda [class*="puntead"]{
+  border: 0 !important;
+  background: none !important;
+  height: 0 !important;
+}
+
+/* sombra/degradado inferior */
+body::after{
+  content:"";
+  position: fixed;           /* siempre pegado al borde inferior de la ventana */
+  left:0; right:0; bottom:0; /* ocupa todo el ancho, solo en la parte baja */
+  height:140px;              /* altura del degradado (ajústala a gusto) */
+  pointer-events:none;       /* no bloquea clics */
+
+  /* 2 capas: una elíptica (más realista) y una lineal de refuerzo */
+  background:
+    radial-gradient(120% 80px at 50% 100%,
+                    rgba(0,0,0,.16),    /* “sombra” en el borde inferior */
+                    rgba(0,0,0,0) 60%), /* se desvanece hacia arriba */
+    linear-gradient(to top,
+                    rgba(0,0,0,.08),
+                    rgba(0,0,0,0));
+}
+
+#centercontainer::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:120px;
+  pointer-events:none;
+  background:
+    radial-gradient(110% 70px at 50% 100%, rgba(0,0,0,.14), rgba(0,0,0,0) 60%),
+    linear-gradient(to top, rgba(0,0,0,.07), rgba(0,0,0,0));
+}
+
+.pestSel {
+    float: left;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    background: #fff repeat-x bottom;
+    min-height: 25px;
+    font-weight: 800;
+}
+
+.entreSel {
+    border-color: #FFFFFF rgb(185, 185, 185) rgb(185, 185, 185);
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    min-height: 25px;
+    text-align: center;
+    width: 0.3125em;
+}
+
+.pest {
+    float: left;
+    text-align: center;
+    background-color: rgb(229, 236, 249);
+    height: 25px;
+    border-width: 1px;
+    border-color: rgb(215, 215, 215);
+    border-image: initial;
+}
+
+.pest input, .pestSel input {
+    font: 1em Arial, Helvetica, sans-serif;
+    color: var(--edatos-color-dark-blue-50);
+    border: none;
+    background-color: #e5ecf9;
+    cursor: pointer;
+}
+
+.pest, .pestSel{
+  display: inline-block;         /* por si el HTML es <span> */
+  border-radius: 5px 5px 0 0;  /* TL TR BR BL */
+  padding: 6px 14px;
+}
+
+.conten_result {
+    background-color: white;
+}
+
+.conten {
+    background-color: #e5ecf9;
+}
+
+.cabecera_div {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p.parrafo_resultado_error {
+    font-size: 0.9em;
+    padding-top: 10px;
+}

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.siemac.metamac.core.common.conf.ConfigurationService;
+import org.siemac.metamac.core.common.exception.MetamacException;
+import org.siemac.metamac.core.common.util.ApplicationContextProvider;
 import org.springframework.stereotype.Service;
-
-import com.arte.acom.configuration.ConfigurationService;
 
 import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.core.util.CSVFormatFactory;
@@ -22,12 +22,9 @@ import es.gobcan.istac.idxmanager.domain.mvc.Busqueda;
 @Service
 public class AuditoriaServiceImpl implements AuditoriaService {
 
-    protected static Log         LOGGER    = LogFactory.getLog(AuditoriaService.class);
+    protected static final Log         LOGGER    = LogFactory.getLog(AuditoriaService.class);
 
-    protected static String      AUDITORIA = "auditoria";
-
-    @Autowired
-    private ConfigurationService configurationService;
+    protected static final String      AUDITORIA = "auditoria";
 
     @Override
     public void auditar(Busqueda busquedausuario) {
@@ -71,25 +68,33 @@ public class AuditoriaServiceImpl implements AuditoriaService {
     }
 
     private File getAuditFile(ZonedDateTime now) throws IOException {
-        String dataUrl = configurationService.getProperties().getProperty(Constantes.BUSCADOR_DATA_URL);
+        ConfigurationService configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
+        try {
 
-        String fileName = JSR310DateTimeFormatters.formatInYYYYMM(now);
+            String dataUrl = configurationService.retrieveProperty(Constantes.BUSCADOR_DATA_URL);
 
-        StringBuilder fullPath = new StringBuilder(dataUrl);
-        if (!dataUrl.endsWith("/")) {
-            fullPath.append("/");
+            String fileName = JSR310DateTimeFormatters.formatInYYYYMM(now);
+
+            StringBuilder fullPath = new StringBuilder(dataUrl);
+            if (!dataUrl.endsWith("/")) {
+                fullPath.append("/");
+            }
+            fullPath.append(AUDITORIA).append("/").append(fileName).append(".csv");
+
+            File auditFile = new File(fullPath.toString());
+            if (!auditFile.exists()) {
+                // Crear cabecera
+                CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat());
+                csvFilePrinter.printRecord(getCsvHeader());
+                csvFilePrinter.close();
+            }
+
+            return auditFile;
+        } catch (MetamacException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
         }
-        fullPath.append(AUDITORIA).append("/").append(fileName).append(".csv");
-
-        File auditFile = new File(fullPath.toString());
-        if (!auditFile.exists()) {
-            // Crear cabecera
-            CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat());
-            csvFilePrinter.printRecord(getCsvHeader());
-            csvFilePrinter.close();
-        }
-
-        return auditFile;
+        
     }
     private ArrayList<String> getCsvHeader() {
         ArrayList<String> header = new ArrayList<String>();

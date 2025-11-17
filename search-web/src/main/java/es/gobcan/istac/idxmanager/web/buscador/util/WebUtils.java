@@ -7,11 +7,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.solr.common.SolrDocument;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.siemac.metamac.core.common.conf.ConfigurationService;
+import org.siemac.metamac.core.common.exception.MetamacException;
+import org.siemac.metamac.core.common.util.ApplicationContextProvider;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.arte.acom.configuration.ConfigurationService;
 
 import es.gobcan.istac.idxmanager.core.constants.Constantes;
 import es.gobcan.istac.idxmanager.domain.dom.TypeNMDomain;
@@ -22,21 +22,38 @@ import es.gobcan.istac.idxmanager.web.buscador.mvc.domain.BusquedaWrapper;
 @Scope(value = "singleton")
 public class WebUtils {
 
-    protected static Log         log           = LogFactory.getLog(WebUtils.class);
-
-    @Autowired
-    private ConfigurationService configurationService;
-
+    protected static Log                log           = LogFactory.getLog(WebUtils.class);
+    private static String               header;
+    private static String               footer;
+    private static String               apiKey;
+    private static String               searchTitle;
+    private static ConfigurationService configurationService;
     // In reality, we should be using htmlVisualizerLink, but we´ll do it faster here to avoid indexing that property now
-    private String               urlVisualizer = null;
+    private String                      urlVisualizer = null;
+
+    private static ConfigurationService getConfigurationService() {
+        if (configurationService == null) {
+            configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
+        }
+        return configurationService;
+    }
 
     public String getUrlVisualizer() {
         if (StringUtils.isEmpty(urlVisualizer)) {
-            StringBuilder buff = new StringBuilder(configurationService.getProperties().getProperty(Constantes.ISTAC_IDXMANAGER_SOLR_URLVISUALIZER));
-            if (buff.charAt(buff.length() - 1) != '/') {
-                buff.append("/");
+            configurationService = getConfigurationService();
+            try {
+                String propiedad = configurationService.retrievePortalExternalWebApplicationUrlVisualizer();
+                if (!StringUtils.isEmpty(propiedad)) {
+                    StringBuilder buff = new StringBuilder(propiedad);
+                    if (buff.charAt(buff.length() - 1) != '/') {
+                        buff.append("/");
+                    }
+                    urlVisualizer = buff.toString();
+                }
+            } catch (MetamacException e) {
+                log.error("WebUtils::getUrlVisualizer: " + e);
+                return null;
             }
-            urlVisualizer = buff.toString();
         }
         return urlVisualizer;
     }
@@ -133,6 +150,58 @@ public class WebUtils {
         return urlBuilder.toString();
     }
 
+    public static String getApiKey() {
+        if (apiKey == null) {
+            configurationService = getConfigurationService();
+            try {
+                apiKey = configurationService.retrieveProperty(Constantes.SEARCH_API_KEY);
+            } catch (MetamacException e) {
+                log.error("WebUtils::getApiKey: " + e);
+                return "";
+            }
+        }
+        return apiKey;
+    }
+
+    public static String getHeader() {
+        if (header == null) {
+            configurationService = getConfigurationService();
+            try {
+                header = configurationService.retrieveAppStyleHeaderUrl();
+            } catch (MetamacException e) {
+                log.error("WebUtils::getHeader: " + e);
+                return "";
+            }
+        }
+        return header;
+    }
+
+    public static String getFooter() {
+        if (footer == null) {
+            configurationService = getConfigurationService();
+            try {
+                footer = configurationService.retrieveAppStyleFooterUrl();
+            } catch (MetamacException e) {
+                log.error("WebUtils::getFooter: " + e);
+                return "";
+            }
+        }
+        return footer;
+    }
+
+    public static String getWelcomeTitle() {
+        if (searchTitle == null) {
+            configurationService = getConfigurationService();
+            try {
+                searchTitle = configurationService.retrieveOrganisation();
+            } catch (MetamacException e) {
+                log.error("WebUtils::getFooter: " + e);
+                return "";
+            }
+        }
+        return searchTitle;
+    }
+
     public static String getFullURL(HttpServletRequest request, boolean includeQueryString) {
         StringBuilder requestURL = new StringBuilder("//") // URL relativa al protocolo
                 .append(request.getServerName());
@@ -185,6 +254,18 @@ public class WebUtils {
         if (!StringUtils.isEmpty(busquedaWrapper.getBusqueda().getSubCodFF())) {
             urlBuilder.addParameter("subCodFF", busquedaWrapper.getBusqueda().getSubCodFF());
         }
+    }
+
+    public static void setHeader(String header) {
+        WebUtils.header = header;
+    }
+
+    public static void setFooter(String footer) {
+        WebUtils.footer = footer;
+    }
+
+    public static void setApiKey(String apiKey) {
+        WebUtils.apiKey = apiKey;
     }
 
 }

@@ -47,7 +47,9 @@
         <!-- LOGGING -->
         <slf4j.version>1.6.1</slf4j.version>
         <logback.version>0.9.29</logback.version>
-        <edatos-core-utils.version>1.19.0</edatos-core-utils.version>
+        <edatos-core-utils.version>1.23.1</edatos-core-utils.version>
+        <metamac-core-common.version>8.7.1</metamac-core-common.version>
+        <postgresql.version>42.2.16</postgresql.version>
         
         <!-- COMMONS -->
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -60,9 +62,6 @@
         
         <!-- CSV -->
         <commons-csv.version>1.5</commons-csv.version>
-        
-        <!-- ARTE CONFIGURATION -->
-        <acom-configuration.version>1.0.1</acom-configuration.version>
     </properties>
 
     <dependencyManagement>
@@ -150,7 +149,11 @@
                 <artifactId>solr-solrj</artifactId>
                 <version>${solar.version}</version>
             </dependency>
-            
+            <dependency>
+	            <groupId>org.siemac.metamac</groupId>
+	            <artifactId>metamac-core-common</artifactId>
+	            <version>${metamac-core-common.version}</version>
+	        </dependency>
              <!-- COMMONS -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -195,7 +198,11 @@
                 <artifactId>edatos-core-utils</artifactId>
                 <version>${edatos-core-utils.version}</version>
             </dependency>
-            
+            <dependency>
+			    <groupId>org.postgresql</groupId>
+			    <artifactId>postgresql</artifactId>
+			    <version>${postgresql.version}</version>
+			</dependency>
             <!-- MISCELLANEOUS -->
             <dependency>
                 <groupId>joda-time</groupId>
@@ -208,13 +215,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
                 <version>${commons-csv.version}</version>
-            </dependency>
-            
-            <!-- ARTE CONFIGURATION -->
-            <dependency>
-                <groupId>com.arte.acom.acom-configuration</groupId>
-                <artifactId>acom-configuration</artifactId>
-                <version>${acom-configuration.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
