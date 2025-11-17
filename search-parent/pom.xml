@@ -47,8 +47,8 @@
         <!-- LOGGING -->
         <slf4j.version>1.6.1</slf4j.version>
         <logback.version>0.9.29</logback.version>
-        <edatos-core-utils.version>1.23.2-SNAPSHOT</edatos-core-utils.version>
-        <metamac-core-common.version>8.7.2-SNAPSHOT</metamac-core-common.version>
+        <edatos-core-utils.version>1.23.1</edatos-core-utils.version>
+        <metamac-core-common.version>8.7.1</metamac-core-common.version>
         <postgresql.version>42.2.16</postgresql.version>
         
         <!-- COMMONS -->
