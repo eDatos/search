@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.validation.Valid;
 
@@ -47,6 +46,7 @@ public class BusquedaController {
 
     private static final int RESULTS_BY_PAGE                      = 10;
     private static final int NUMER_OF_VISIBLE_PAGES_IN_PAGINATION = 5;
+    private static final String[] NOT_CLEAN_TAGS = {"a", "br", "i", "em", "b", "ul", "ol", "li"};
 
     @Autowired
     private WebUtils         webUtils;
@@ -145,49 +145,47 @@ public class BusquedaController {
                 return "/busqueda";
             }
         }
-        cleanHighlightingList(queryResponse);
-        cleanNmDescription(solrDocumentList);
+        Whitelist whiteList = new Whitelist();
+        whiteList.addTags(NOT_CLEAN_TAGS);
+        cleanHighlightingList(queryResponse, whiteList);
+        cleanNmDescription(solrDocumentList, whiteList);
         processBindingModel(solrDocumentList, solrSuggestedDocumentList, queryResponse, model, busqueda);
         return "busqueda/lista";
     }
-    private void cleanHighlightingList(QueryResponse queryResponse) {
+    private void cleanHighlightingList(QueryResponse queryResponse, Whitelist whiteList) {
         if (queryResponse == null || queryResponse.getHighlighting() == null) {
             return;
         }
-        Whitelist whiteList = new Whitelist();
-        whiteList.addTags("a", "br", "i", "em", "b", "ul", "ol", "li");
         for (Map.Entry<String, Map<String, List<String>>> entry : queryResponse.getHighlighting().entrySet()) {
             if (entry.getValue().get(TK_CONTENIDO) != null) {
-                List<String> descriptions = new ArrayList<>();
-                for (String description : entry.getValue().get(TK_CONTENIDO)) {
-                    descriptions.add(Jsoup.clean(description, whiteList));
-                }
+                List<String> descriptions = entry.getValue().get(TK_CONTENIDO);
+                List<String> descriptionsCleaned = cleanStringList(whiteList, descriptions);
                 entry.getValue().get(TK_CONTENIDO).clear();
-                entry.getValue().get(TK_CONTENIDO).addAll(descriptions);
+                entry.getValue().get(TK_CONTENIDO).addAll(descriptionsCleaned);
             }
         }
     }
 
-    private void cleanNmDescription(SolrDocumentList solrDocumentList) {
+    private void cleanNmDescription(SolrDocumentList solrDocumentList, Whitelist whiteList) {
         if (solrDocumentList == null || solrDocumentList.isEmpty()) {
             return;
         }
-        Whitelist whiteList = new Whitelist();
-        whiteList.addTags("a", "br", "i", "em", "b", "ul", "ol", "li");
         for (SolrDocument solrDocument : solrDocumentList) {
-            for (Entry<String, Object> entry : solrDocument.entrySet()) {
-                if (NM_DESCRIPTION.equals(entry.getKey())) {
-                    List<String> nMDescriptionValuesCleaned = new ArrayList<>();
-                    List<String> nMDescriptionValues = (List<String>) entry.getValue();
-                    for (String nMDescriptionValue : nMDescriptionValues) {
-                        nMDescriptionValuesCleaned.add(Jsoup.clean(nMDescriptionValue, whiteList));
-                    }
-                    ((List<String>) solrDocument.get(NM_DESCRIPTION)).clear();
-                    ((List<String>) solrDocument.get(NM_DESCRIPTION)).addAll(nMDescriptionValuesCleaned);
-                }
-                
+            List<String> nmDescriptionValues = (List<String>) solrDocument.get(NM_DESCRIPTION);
+            if (nmDescriptionValues != null && !nmDescriptionValues.isEmpty()) {
+                List<String> nMDescriptionValuesCleaned = cleanStringList(whiteList, nmDescriptionValues);
+                ((List<String>) solrDocument.get(NM_DESCRIPTION)).clear();
+                ((List<String>) solrDocument.get(NM_DESCRIPTION)).addAll(nMDescriptionValuesCleaned);
             }
         }
+    }
+
+    private List<String> cleanStringList(Whitelist whiteList, List<String> valuesToClean) {
+        List<String> valuesCleaned = new ArrayList<>();
+        for (String valueToClean : valuesToClean) {
+            valuesCleaned.add(Jsoup.clean(valueToClean, whiteList));
+        }
+        return valuesCleaned;
     }
 
     private void processBindingModel(SolrDocumentList solrDocumentList, SolrDocumentList solrSuggestedDocumentList, QueryResponse queryResponse, Model model, Busqueda busqueda) {
