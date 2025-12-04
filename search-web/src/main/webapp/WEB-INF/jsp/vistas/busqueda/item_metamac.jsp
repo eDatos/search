@@ -24,8 +24,8 @@
 <c:if test="${!empty highlightingList}">
 	<div class="resultado_item resultado_item_highlight">	
 		<c:choose>
-			<c:when test="${!empty highlightingList[item['id']]['nm_description']}">
- 				<c:forEach var="item2" items="${highlightingList[item['id']]['nm_description']}" varStatus="status"><c:if test="${status.first}"><b>...</b></c:if><c:out escapeXml="false" value="${item2}"/><b> ...</b></c:forEach>
+			<c:when test="${!empty highlightingList[item['id']]['nm_description_clean']}">
+ 				<c:forEach var="item2" items="${highlightingList[item['id']]['nm_description_clean']}" varStatus="status"><c:if test="${status.first}"><b>...</b></c:if><c:out escapeXml="false" value="${item2}"/><b> ...</b></c:forEach>
  			</c:when>
  			<c:when test="${!empty highlightingList[item['id']]['tk_contenido']}">
  				<c:forEach var="item2" items="${highlightingList[item['id']]['tk_contenido']}" varStatus="status"><c:if test="${status.first}"><b>...</b></c:if><c:out escapeXml="false" value="${item2}"/><b> ...</b></c:forEach>

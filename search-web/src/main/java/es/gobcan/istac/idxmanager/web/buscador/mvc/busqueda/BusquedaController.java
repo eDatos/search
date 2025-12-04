@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -36,6 +38,8 @@ import es.gobcan.istac.idxmanager.web.buscador.validation.BusquedaValidator;
 
 @Controller
 public class BusquedaController {
+
+    private static final String TK_CONTENIDO = "tk_contenido";
 
     private static final String NM_DESCRIPTION = "nm_description";
 
@@ -142,6 +146,7 @@ public class BusquedaController {
             }
         }
         cleanHighlightingList(queryResponse);
+        cleanNmDescription(solrDocumentList);
         processBindingModel(solrDocumentList, solrSuggestedDocumentList, queryResponse, model, busqueda);
         return "busqueda/lista";
     }
@@ -150,14 +155,37 @@ public class BusquedaController {
             return;
         }
         Whitelist whiteList = new Whitelist();
+        whiteList.addTags("a", "br", "i", "em", "b", "ul", "ol", "li");
         for (Map.Entry<String, Map<String, List<String>>> entry : queryResponse.getHighlighting().entrySet()) {
-            if (entry.getValue().get(NM_DESCRIPTION) != null) {
+            if (entry.getValue().get(TK_CONTENIDO) != null) {
                 List<String> descriptions = new ArrayList<>();
-                for (String description : entry.getValue().get(NM_DESCRIPTION)) {
+                for (String description : entry.getValue().get(TK_CONTENIDO)) {
                     descriptions.add(Jsoup.clean(description, whiteList));
                 }
-                entry.getValue().get(NM_DESCRIPTION).clear();
-                entry.getValue().get(NM_DESCRIPTION).addAll(descriptions);
+                entry.getValue().get(TK_CONTENIDO).clear();
+                entry.getValue().get(TK_CONTENIDO).addAll(descriptions);
+            }
+        }
+    }
+
+    private void cleanNmDescription(SolrDocumentList solrDocumentList) {
+        if (solrDocumentList == null || solrDocumentList.isEmpty()) {
+            return;
+        }
+        Whitelist whiteList = new Whitelist();
+        whiteList.addTags("a", "br", "i", "em", "b", "ul", "ol", "li");
+        for (SolrDocument solrDocument : solrDocumentList) {
+            for (Entry<String, Object> entry : solrDocument.entrySet()) {
+                if (NM_DESCRIPTION.equals(entry.getKey())) {
+                    List<String> nMDescriptionValuesCleaned = new ArrayList<>();
+                    List<String> nMDescriptionValues = (List<String>) entry.getValue();
+                    for (String nMDescriptionValue : nMDescriptionValues) {
+                        nMDescriptionValuesCleaned.add(Jsoup.clean(nMDescriptionValue, whiteList));
+                    }
+                    ((List<String>) solrDocument.get(NM_DESCRIPTION)).clear();
+                    ((List<String>) solrDocument.get(NM_DESCRIPTION)).addAll(nMDescriptionValuesCleaned);
+                }
+                
             }
         }
     }
