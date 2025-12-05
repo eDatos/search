@@ -4,7 +4,7 @@
     <parent>
         <groupId>es.gobcan.istac.search</groupId>
         <artifactId>search-parent</artifactId>
-        <version>6.4.1</version>
+        <version>6.4.2-SNAPSHOT</version>
         <relativePath>search-parent/pom.xml</relativePath>
     </parent>
 
@@ -16,7 +16,7 @@
         <connection>scm:git:https://git.arte-consultores.com/istac/search</connection>
         <developerConnection>scm:git:https://git.arte-consultores.com/istac/search</developerConnection>
         <url>https://git.arte-consultores.com/istac/search</url>
-        <tag>20251205-1118-v6.4.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
