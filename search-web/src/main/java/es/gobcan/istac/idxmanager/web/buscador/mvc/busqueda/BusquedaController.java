@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -37,12 +38,15 @@ import es.gobcan.istac.idxmanager.web.buscador.validation.BusquedaValidator;
 @Controller
 public class BusquedaController {
 
+    private static final String TK_CONTENIDO = "tk_contenido";
+
     private static final String NM_DESCRIPTION = "nm_description";
 
     protected Log            log                                  = LogFactory.getLog(BusquedaController.class);
 
     private static final int RESULTS_BY_PAGE                      = 10;
     private static final int NUMER_OF_VISIBLE_PAGES_IN_PAGINATION = 5;
+    private static final String[] NOT_CLEAN_TAGS = {"a", "br", "i", "em", "b", "ul", "ol", "li"};
 
     @Autowired
     private WebUtils         webUtils;
@@ -141,25 +145,47 @@ public class BusquedaController {
                 return "/busqueda";
             }
         }
-        cleanHighlightingList(queryResponse);
+        Whitelist whiteList = new Whitelist();
+        whiteList.addTags(NOT_CLEAN_TAGS);
+        cleanHighlightingList(queryResponse, whiteList);
+        cleanNmDescription(solrDocumentList, whiteList);
         processBindingModel(solrDocumentList, solrSuggestedDocumentList, queryResponse, model, busqueda);
         return "busqueda/lista";
     }
-    private void cleanHighlightingList(QueryResponse queryResponse) {
+    private void cleanHighlightingList(QueryResponse queryResponse, Whitelist whiteList) {
         if (queryResponse == null || queryResponse.getHighlighting() == null) {
             return;
         }
-        Whitelist whiteList = new Whitelist();
         for (Map.Entry<String, Map<String, List<String>>> entry : queryResponse.getHighlighting().entrySet()) {
-            if (entry.getValue().get(NM_DESCRIPTION) != null) {
-                List<String> descriptions = new ArrayList<>();
-                for (String description : entry.getValue().get(NM_DESCRIPTION)) {
-                    descriptions.add(Jsoup.clean(description, whiteList));
-                }
-                entry.getValue().get(NM_DESCRIPTION).clear();
-                entry.getValue().get(NM_DESCRIPTION).addAll(descriptions);
+            if (entry.getValue().get(TK_CONTENIDO) != null) {
+                List<String> descriptions = entry.getValue().get(TK_CONTENIDO);
+                List<String> descriptionsCleaned = cleanStringList(whiteList, descriptions);
+                entry.getValue().get(TK_CONTENIDO).clear();
+                entry.getValue().get(TK_CONTENIDO).addAll(descriptionsCleaned);
             }
         }
+    }
+
+    private void cleanNmDescription(SolrDocumentList solrDocumentList, Whitelist whiteList) {
+        if (solrDocumentList == null || solrDocumentList.isEmpty()) {
+            return;
+        }
+        for (SolrDocument solrDocument : solrDocumentList) {
+            List<String> nmDescriptionValues = (List<String>) solrDocument.get(NM_DESCRIPTION);
+            if (nmDescriptionValues != null && !nmDescriptionValues.isEmpty()) {
+                List<String> nMDescriptionValuesCleaned = cleanStringList(whiteList, nmDescriptionValues);
+                ((List<String>) solrDocument.get(NM_DESCRIPTION)).clear();
+                ((List<String>) solrDocument.get(NM_DESCRIPTION)).addAll(nMDescriptionValuesCleaned);
+            }
+        }
+    }
+
+    private List<String> cleanStringList(Whitelist whiteList, List<String> valuesToClean) {
+        List<String> valuesCleaned = new ArrayList<>();
+        for (String valueToClean : valuesToClean) {
+            valuesCleaned.add(Jsoup.clean(valueToClean, whiteList));
+        }
+        return valuesCleaned;
     }
 
     private void processBindingModel(SolrDocumentList solrDocumentList, SolrDocumentList solrSuggestedDocumentList, QueryResponse queryResponse, Model model, Busqueda busqueda) {
