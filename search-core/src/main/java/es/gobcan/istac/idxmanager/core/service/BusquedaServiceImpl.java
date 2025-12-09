@@ -56,8 +56,12 @@ public class BusquedaServiceImpl implements BusquedaService {
             solrQuery.setRows(resultByPage);
 
             // QUERY
+            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("/", "\\/") : null);
+            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("/", "\\/") : null);
             processOptions(busqueda, solrQuery);
 
+            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("\\/", "/") : null);
+            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("\\/", "/") : null);
             // Ordenacion por fecha
             if (StringUtils.isNotEmpty(busqueda.getSort())) {
                 solrQuery.setSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
@@ -129,7 +133,12 @@ public class BusquedaServiceImpl implements BusquedaService {
             SolrQuery solrQuery = new SolrQuery();
 
             // // Query avanzado
+            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("/", "\\/") : null);
+            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("/", "\\/") : null);
             processOptions(busqueda, solrQuery);
+
+            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("\\/", "/") : null);
+            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("\\/", "/") : null);
 
             // Debemos especificar que usaremos el request Handler especial para recomendaciones
             solrQuery.setRequestHandler(SPONSORED_QT);
