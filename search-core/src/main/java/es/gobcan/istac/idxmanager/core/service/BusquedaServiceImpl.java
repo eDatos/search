@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.util.ClientUtils;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +57,7 @@ public class BusquedaServiceImpl implements BusquedaService {
             solrQuery.setRows(resultByPage);
 
             // QUERY
-            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("/", "\\/") : null);
-            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("/", "\\/") : null);
-            processOptions(busqueda, solrQuery);
-
-            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("\\/", "/") : null);
-            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("\\/", "/") : null);
+            processOptionsQuery(busqueda, solrQuery);
             // Ordenacion por fecha
             if (StringUtils.isNotEmpty(busqueda.getSort())) {
                 solrQuery.setSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
@@ -82,6 +78,16 @@ public class BusquedaServiceImpl implements BusquedaService {
         }
 
         return null;
+    }
+
+    private void processOptionsQuery(Busqueda busqueda, SolrQuery solrQuery) {
+        String filtroTextoQuery = busqueda.getFiltroTextoQuery();
+        String userQuery = busqueda.getUserQuery();
+        busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? ClientUtils.escapeQueryChars(busqueda.getFiltroTextoQuery()) : null);
+        busqueda.setUserQuery(busqueda.getUserQuery() != null ? ClientUtils.escapeQueryChars(busqueda.getUserQuery()) : null);
+        processOptions(busqueda, solrQuery);
+        busqueda.setFiltroTextoQuery(filtroTextoQuery);
+        busqueda.setUserQuery(userQuery);
     }
 
     private void incluirFacets(Busqueda busqueda, SolrQuery solrQuery) {
@@ -133,12 +139,7 @@ public class BusquedaServiceImpl implements BusquedaService {
             SolrQuery solrQuery = new SolrQuery();
 
             // // Query avanzado
-            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("/", "\\/") : null);
-            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("/", "\\/") : null);
-            processOptions(busqueda, solrQuery);
-
-            busqueda.setFiltroTextoQuery(busqueda.getFiltroTextoQuery() != null ? busqueda.getFiltroTextoQuery().replace("\\/", "/") : null);
-            busqueda.setUserQuery(busqueda.getUserQuery() != null ? busqueda.getUserQuery().replace("\\/", "/") : null);
+            processOptionsQuery(busqueda, solrQuery);
 
             // Debemos especificar que usaremos el request Handler especial para recomendaciones
             solrQuery.setRequestHandler(SPONSORED_QT);
@@ -158,6 +159,7 @@ public class BusquedaServiceImpl implements BusquedaService {
 
         return null;
     }
+    
     private SolrDocumentList processPriority(QueryResponse response) {
         SolrDocumentList docList = response.getResults();
         Map<String, Integer> processed = new HashMap<String, Integer>();
