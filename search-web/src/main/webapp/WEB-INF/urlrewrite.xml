@@ -17,11 +17,4 @@
 		<from>/**</from>
 		<to>/app/$1</to>
 	</rule>
-	<!-- FIX: El path es gobiernodecanarias.org/istac/buscador-istac-web -->
-	<!-- Según la configuración de tomcat-apache quitar este FIX	-->
-<!--	<outbound-rule>-->
-<!--		<from>/**</from>-->
-<!--		<to>/istac/$1</to>-->
-<!--	</outbound-rule>-->
-
 </urlrewrite>
