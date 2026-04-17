@@ -11,8 +11,6 @@
 	<c:param name="titulo">
 		<fmt:message key="welcome.title" />
 	</c:param>
-	<c:param name="metakeywords" value="Buscador"></c:param>
-	<c:param name="metadescription" value="Instituto Canario de Estadística"></c:param>
 </c:import>
 
   <body>

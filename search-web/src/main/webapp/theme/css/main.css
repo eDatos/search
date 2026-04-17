@@ -472,3 +472,20 @@ h2.filtrado {
     cursor: pointer;
     font-weight: 600;
 }
+
+/****************************************************/
+/*            Error page                            */
+/****************************************************/
+
+.error-page {
+    padding: 60px 20px;
+}
+
+.error-page p {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.error-page .btn {
+    margin-top: 30px;
+}

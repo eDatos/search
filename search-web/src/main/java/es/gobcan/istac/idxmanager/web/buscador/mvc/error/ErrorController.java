@@ -17,6 +17,6 @@ class ErrorController {
     @RequestMapping(value = {"/errors", "/**/{path:[^\\.]*}"})
     public String customError(HttpServletRequest request, HttpServletResponse response, Model model) {
         LOGGER.error(String.format("Se ha producido un error. Path: %s ", request.getPathInfo()));
-        return "redirect:https://www.gobiernodecanarias.org/error.html";
+        return "error";
     }
 }
