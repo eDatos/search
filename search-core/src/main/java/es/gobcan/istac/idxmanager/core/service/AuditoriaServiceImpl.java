@@ -3,6 +3,7 @@ package es.gobcan.istac.idxmanager.core.service;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
@@ -63,7 +64,7 @@ public class AuditoriaServiceImpl implements AuditoriaService {
             csvFilePrinter.printRecord(record);
             csvFilePrinter.close();
         } catch (Exception e) {
-            LOGGER.debug("Se ha producido una excepción al logear el mensaje de búsqueda", e);
+            LOGGER.warn("Se ha producido una excepción al logear el mensaje de búsqueda", e);
         }
     }
 
@@ -83,10 +84,10 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
             File auditFile = new File(fullPath.toString());
             if (!auditFile.exists()) {
-                // Crear cabecera
-                CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat());
-                csvFilePrinter.printRecord(getCsvHeader());
-                csvFilePrinter.close();
+                Files.createDirectories(auditFile.toPath().getParent());
+                try (CSVPrinter csvFilePrinter = new CSVPrinter(new FileWriter(auditFile, true), CSVFormatFactory.getCSVFormat())) {
+                    csvFilePrinter.printRecord(getCsvHeader());
+                }
             }
 
             return auditFile;
