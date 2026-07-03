@@ -29,6 +29,10 @@ public class AuditoriaServiceImpl implements AuditoriaService {
 
     @Override
     public void auditar(Busqueda busquedausuario) {
+        if (!isEnabled()) {
+            return;
+        }
+
         LOGGER.debug("Guardando log con búsqueda de usuario");
 
         ZonedDateTime now = ZonedDateTime.now();
@@ -65,6 +69,14 @@ public class AuditoriaServiceImpl implements AuditoriaService {
             csvFilePrinter.close();
         } catch (Exception e) {
             LOGGER.warn("Se ha producido una excepción al logear el mensaje de búsqueda", e);
+        }
+    }
+
+    private boolean isEnabled() {
+        try {
+            return ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class).retrievePropertyBoolean(Constantes.AUDIT_FILE_ENABLED);
+        } catch (MetamacException e) {
+            return true;
         }
     }
 
