@@ -73,7 +73,9 @@ public class BusquedaServiceImpl implements BusquedaService {
             // Maximo tiempo para efectuar la consulta 10000 milisegundos
             solrQuery.setTimeAllowed(10000);
 
-            auditoriaServices.forEach(auditoriaService -> auditoriaService.auditar(busqueda));
+            for (AuditoriaService auditoriaService : auditoriaServices) {
+                auditoriaService.auditar(busqueda);
+            }
             return solr.ejecutarQuery(solrQuery);
         } catch (Exception e) {
             log.error("BusquedaServiceImpl::ejecutarQuery: " + e);
