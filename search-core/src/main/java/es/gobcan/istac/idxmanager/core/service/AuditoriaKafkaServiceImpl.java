@@ -8,9 +8,11 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.siemac.metamac.core.common.conf.ConfigurationService;
 import org.siemac.metamac.core.common.exception.MetamacException;
@@ -65,9 +67,12 @@ public class AuditoriaKafkaServiceImpl implements AuditoriaService, ApplicationL
     }
 
     private void sendEvento(String json) throws MetamacException {
-        getProducer().send(new ProducerRecord<>(Constantes.AUDIT_KAFKA_TOPIC, json), (metadata, ex) -> {
-            if (ex != null) {
-                LOGGER.error("Fallo enviando evento de auditoría a Kafka", ex);
+        getProducer().send(new ProducerRecord<>(Constantes.AUDIT_KAFKA_TOPIC, json), new Callback() {
+            @Override
+            public void onCompletion(RecordMetadata metadata, Exception exception) {
+                if (exception != null) {
+                    LOGGER.error("Fallo enviando evento de auditoría a Kafka", exception);
+                }
             }
         });
     }
