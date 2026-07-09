@@ -64,12 +64,11 @@ public class BusquedaServiceImpl implements BusquedaService {
             // Sort: by date (user-selected) or by relevance then date (default); id as stable tiebreaker
             if (StringUtils.isNotEmpty(busqueda.getSort())) {
                 solrQuery.setSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
-                solrQuery.addSort(IndexacionEnumDomain.ID.getCampo(), SolrQuery.ORDER.asc);
             } else {
                 solrQuery.setSort("score", SolrQuery.ORDER.desc);
                 solrQuery.addSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
-                solrQuery.addSort(IndexacionEnumDomain.ID.getCampo(), SolrQuery.ORDER.asc);
             }
+            solrQuery.addSort(IndexacionEnumDomain.ID.getCampo(), SolrQuery.ORDER.asc);
 
             incluirFacets(busqueda, solrQuery);
             setFiltroTipoRecurso(busqueda, solrQuery);
