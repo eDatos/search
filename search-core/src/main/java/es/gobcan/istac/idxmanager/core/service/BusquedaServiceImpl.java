@@ -61,14 +61,22 @@ public class BusquedaServiceImpl implements BusquedaService {
 
             // QUERY
             processOptionsQuery(busqueda, solrQuery);
-            // Ordenacion por fecha
+            // Sort: by date (user-selected) or by relevance then date (default); id as stable tiebreaker
             if (StringUtils.isNotEmpty(busqueda.getSort())) {
                 solrQuery.setSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
+                solrQuery.addSort(IndexacionEnumDomain.ID.getCampo(), SolrQuery.ORDER.asc);
+            } else {
+                solrQuery.setSort("score", SolrQuery.ORDER.desc);
+                solrQuery.addSort(IndexacionEnumDomain.NM_LAST_UPDATE.getCampo(), SolrQuery.ORDER.desc);
+                solrQuery.addSort(IndexacionEnumDomain.ID.getCampo(), SolrQuery.ORDER.asc);
             }
 
             incluirFacets(busqueda, solrQuery);
             setFiltroTipoRecurso(busqueda, solrQuery);
             setFiltrosParaFacets(busqueda, solrQuery);
+
+            // Exclude non-current versions; web crawled documents without this field are not affected
+            solrQuery.addFilterQuery("*:* -" + IndexacionEnumDomain.NM_LAST_VERSION.getCampo() + ":false");
 
             // Maximo tiempo para efectuar la consulta 10000 milisegundos
             solrQuery.setTimeAllowed(10000);
@@ -148,6 +156,9 @@ public class BusquedaServiceImpl implements BusquedaService {
 
             // Debemos especificar que usaremos el request Handler especial para recomendaciones
             solrQuery.setRequestHandler(SPONSORED_QT);
+
+            // Exclude non-current versions; web crawled documents without this field are not affected
+            solrQuery.addFilterQuery("*:* -" + IndexacionEnumDomain.NM_LAST_VERSION.getCampo() + ":false");
 
             // Maximo tiempo para efectuar la consulta 10000 milisegundos
             solrQuery.setTimeAllowed(10000);
@@ -256,6 +267,9 @@ public class BusquedaServiceImpl implements BusquedaService {
             solrQuery.setFacetLimit(-1); // Todos los facet, por defecto está limitado a 100
 
             solrQuery.setQuery("*:*");
+
+            // Exclude non-current versions; web crawled documents without this field are not affected
+            solrQuery.addFilterQuery("*:* -" + IndexacionEnumDomain.NM_LAST_VERSION.getCampo() + ":false");
 
             return solr.ejecutarQuery(solrQuery);
         } catch (Exception e) {
