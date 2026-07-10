@@ -78,24 +78,31 @@ public class AuditoriaKafkaServiceImpl implements AuditoriaService, ApplicationL
     }
 
     private String buildEvento(Busqueda busqueda) throws JsonProcessingException {
+        Map<String, Object> extra = new LinkedHashMap<>();
+        extra.put("userQuery",            busqueda.getUserQuery());
+        extra.put("subjectArea",          busqueda.getFiltroSeccionArea());
+        extra.put("statisticalOperation", busqueda.getFiltroSeccionOperacion());
+
+        Map<String, Object> app = new LinkedHashMap<>();
+        app.put("searchType",       busqueda.getSearchType());
+        app.put("filtroTexto",      busqueda.getFiltroTexto());
+        app.put("filtroTextoQuery", busqueda.getFiltroTextoQuery());
+        app.put("filtroSeccion",    busqueda.getFiltroSeccion());
+        app.put("startResult",      busqueda.getStartResult());
+        app.put("pestania",         busqueda.getPestania());
+        app.put("sort",             busqueda.getSort());
+        app.put("svyCodFF",         busqueda.getSvyCodFF());
+        app.put("subCodFF",         busqueda.getSubCodFF());
+        app.put("cvgTCodFF",        busqueda.getCvgTCodFF());
+        app.put("cvgSCodFF",        busqueda.getCvgSCodFF());
+        app.put("formato",          busqueda.getFormato());
+        app.put("ff_select",        busqueda.getFf_select());
+
         Map<String, Object> evento = new LinkedHashMap<>();
-        evento.put("time",                    ZonedDateTime.now().toInstant().toString());
-        evento.put("userQuery",               busqueda.getUserQuery());
-        evento.put("searchType",              busqueda.getSearchType());
-        evento.put("filtroTexto",             busqueda.getFiltroTexto());
-        evento.put("filtroTextoQuery",        busqueda.getFiltroTextoQuery());
-        evento.put("filtroSeccion",           busqueda.getFiltroSeccion());
-        evento.put("filtroSeccionArea",       busqueda.getFiltroSeccionArea());
-        evento.put("filtroSeccionOperacion",  busqueda.getFiltroSeccionOperacion());
-        evento.put("startResult",             busqueda.getStartResult());
-        evento.put("pestania",                busqueda.getPestania());
-        evento.put("sort",                    busqueda.getSort());
-        evento.put("svyCodFF",                busqueda.getSvyCodFF());
-        evento.put("subCodFF",                busqueda.getSubCodFF());
-        evento.put("cvgTCodFF",               busqueda.getCvgTCodFF());
-        evento.put("cvgSCodFF",               busqueda.getCvgSCodFF());
-        evento.put("formato",                 busqueda.getFormato());
-        evento.put("ff_select",               busqueda.getFf_select());
+        evento.put("time",   ZonedDateTime.now().toInstant().toString());
+        evento.put("origen", Constantes.AUDIT_ORIGIN);
+        evento.put("extra",  extra);
+        evento.put("app",    app);
         return mapper.writeValueAsString(evento);
     }
 

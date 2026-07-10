@@ -9,5 +9,6 @@ public class Constantes {
     public static final String AUDIT_FILE_ENABLED  = "search.audit.file.enabled";
     public static final String AUDIT_KAFKA_ENABLED = "search.audit.kafka.enabled";
 
-    public static final String AUDIT_KAFKA_TOPIC = "SEARCH_AUDIT_QUERIES";
+    public static final String AUDIT_KAFKA_TOPIC  = "SEARCH_AUDIT_QUERIES";
+    public static final String AUDIT_ORIGIN       = "edatos_buscador";
 }
