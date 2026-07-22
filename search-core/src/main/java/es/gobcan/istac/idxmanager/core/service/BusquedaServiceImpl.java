@@ -1,6 +1,7 @@
 package es.gobcan.istac.idxmanager.core.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -37,8 +38,10 @@ public class BusquedaServiceImpl implements BusquedaService {
     @Autowired
     private SolrService         solr                  = null;
 
+    // Durante la transición a Kafka conviven dos implementaciones (fichero + Kafka);
+    // Spring inyecta aquí todos los beans de tipo AuditoriaService.
     @Autowired
-    private AuditoriaService    auditoriaService;
+    private List<AuditoriaService> auditoriaServices;
 
     @Override
     public QueryResponse ejecutarQuery(Busqueda busqueda, int resultByPage) throws ServiceExcepcion {
@@ -70,7 +73,9 @@ public class BusquedaServiceImpl implements BusquedaService {
             // Maximo tiempo para efectuar la consulta 10000 milisegundos
             solrQuery.setTimeAllowed(10000);
 
-            auditoriaService.auditar(busqueda);
+            for (AuditoriaService auditoriaService : auditoriaServices) {
+                auditoriaService.auditar(busqueda);
+            }
             return solr.ejecutarQuery(solrQuery);
         } catch (Exception e) {
             log.error("BusquedaServiceImpl::ejecutarQuery: " + e);
