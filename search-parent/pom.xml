@@ -58,7 +58,7 @@
         <joda-time.version>2.2</joda-time.version>        
 
         <!-- SEARCH INDEXER -->
-        <search-indexer.version>8.4.1-SNAPSHOT</search-indexer.version>
+        <search-indexer.version>8.4.1</search-indexer.version>
         
         <!-- CSV -->
         <commons-csv.version>1.5</commons-csv.version>
