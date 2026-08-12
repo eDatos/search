@@ -4,7 +4,7 @@
 
     <groupId>es.gobcan.istac.search</groupId>
     <artifactId>search-parent</artifactId>
-    <version>6.5.1-SNAPSHOT</version>
+    <version>6.5.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SEARCH :: PARENT</name>
 
@@ -58,7 +58,7 @@
         <joda-time.version>2.2</joda-time.version>        
 
         <!-- SEARCH INDEXER -->
-        <search-indexer.version>8.4.1-SNAPSHOT</search-indexer.version>
+        <search-indexer.version>8.4.1</search-indexer.version>
         
         <!-- CSV -->
         <commons-csv.version>1.5</commons-csv.version>
