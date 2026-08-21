@@ -24,5 +24,10 @@
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/select2-bootstrap.min.css" />
 
         <link rel="stylesheet" href="<%=WebUtils.getFullURL(request, false)%>theme/css/main.css"/>
-        
+
+        <%-- Cargador de la cabecera y el pie externos. Va aqui y no junto al
+             resto de scripts del pie para que el fetch arranque cuanto antes;
+             se autodifiere esperando a DOMContentLoaded y no depende de jQuery. --%>
+        <script defer="defer" type="text/javascript" src="<%=WebUtils.getFullURL(request, false)%>theme/js/edatos-external-html.js"></script>
+
 	</head>

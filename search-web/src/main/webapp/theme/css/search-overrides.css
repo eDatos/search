@@ -244,3 +244,12 @@ p.parrafo_resultado_error {
     font-size: 0.9em;
     padding-top: 10px;
 }
+
+/* -------- Cabecera externa cargada desde el navegador -------- */
+/* La cabecera ya no viaja en el HTML inicial (theme/js/edatos-external-html.js),
+   asi que el contenido salta cuando llega. Medir la altura real de #cabecera ya
+   pintado en el entorno de despliegue y fijarla aqui para evitar el salto.
+   A 0 por defecto: si la cabecera no carga no debe quedar un hueco permanente. */
+#cabecera:empty {
+    min-height: var(--search-header-reserved-height, 0);
+}
