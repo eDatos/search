@@ -247,9 +247,12 @@ p.parrafo_resultado_error {
 
 /* -------- Cabecera externa cargada desde el navegador -------- */
 /* La cabecera ya no viaja en el HTML inicial (theme/js/edatos-external-html.js),
-   asi que el contenido salta cuando llega. Medir la altura real de #cabecera ya
-   pintado en el entorno de despliegue y fijarla aqui para evitar el salto.
-   A 0 por defecto: si la cabecera no carga no debe quedar un hueco permanente. */
+   asi que sin reservar su altura el contenido salta cada vez que llega, y con
+   navegaciones completas eso ocurre en cada busqueda y en cada pestania.
+   44px es la altura medida de .edatos-header, identica a 1600, 1280 y 768 de
+   ancho y en el ancho de maquetacion que usan los moviles, y sin margenes.
+   Si el sistema de diseno cambia esa altura, se ajusta con la variable sin
+   tocar la regla. */
 #cabecera:empty {
-    min-height: var(--search-header-reserved-height, 0);
+    min-height: var(--search-header-reserved-height, 44px);
 }
