@@ -58,7 +58,7 @@
      */
     function mostrarPagina() {
         if (document.body) {
-            document.body.className += (document.body.className ? ' ' : '') + 'edatos-listo';
+            document.body.classList.add('edatos-listo');
         }
     }
 
@@ -87,11 +87,13 @@
         var cargas = Array.prototype.map.call(
             document.querySelectorAll(CONTAINER_SELECTOR), load);
 
-        // load() ya captura sus propios errores, asi que ninguna promesa
-        // rechaza; aun asi se pasa mostrarPagina como manejador de rechazo,
-        // porque revelar la pagina no puede depender de que la cabecera cargue.
-        // Sin contenedores —la propiedad de la URL no resuelve— la lista esta
-        // vacia y se revela de inmediato.
-        Promise.all(cargas).then(mostrarPagina, mostrarPagina);
+        // El finally va aqui y no dentro de load() a proposito: revelar cuando
+        // termina *cada* contenedor mostraria la pagina en cuanto acabase el
+        // primero, y sobre todo no se ejecutaria nunca si no hay contenedores
+        // —la propiedad de la URL sin resolver—, dejando la pagina oculta hasta
+        // que saltase la reja de los 3s. Con Promise.all, una lista vacia
+        // resuelve de inmediato y la pagina se revela sin esperar.
+        // load() captura sus propios errores, asi que aqui no rechaza nada.
+        Promise.all(cargas).finally(mostrarPagina);
     });
 })();
