@@ -50,12 +50,24 @@
             });
     }
 
+    /*
+     * Revela la pagina. El CSS la mantiene oculta hasta aqui para que no se
+     * complete en dos tiempos, asi que esto tiene que ejecutarse pase lo que
+     * pase: si no, no hay pagina. Ver la reja de seguridad en
+     * theme/css/search-overrides.css y el <noscript> de layout/head.jsp.
+     */
+    function mostrarPagina() {
+        if (document.body) {
+            document.body.className += (document.body.className ? ' ' : '') + 'edatos-listo';
+        }
+    }
+
     function load(container) {
         var url = container.getAttribute('data-edatos-html-url');
 
         // credentials: 'omit' mantiene la paridad con la descarga en servidor,
         // que tampoco enviaba las cookies del usuario.
-        fetch(url, {credentials: 'omit'})
+        return fetch(url, {credentials: 'omit'})
             .then(function (response) {
                 if (!response.ok) {
                     throw new Error(url + ': HTTP ' + response.status);
@@ -72,7 +84,14 @@
     }
 
     ready(function () {
-        Array.prototype.forEach.call(
+        var cargas = Array.prototype.map.call(
             document.querySelectorAll(CONTAINER_SELECTOR), load);
+
+        // load() ya captura sus propios errores, asi que ninguna promesa
+        // rechaza; aun asi se pasa mostrarPagina como manejador de rechazo,
+        // porque revelar la pagina no puede depender de que la cabecera cargue.
+        // Sin contenedores —la propiedad de la URL no resuelve— la lista esta
+        // vacia y se revela de inmediato.
+        Promise.all(cargas).then(mostrarPagina, mostrarPagina);
     });
 })();

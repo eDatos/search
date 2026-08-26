@@ -245,6 +245,31 @@ p.parrafo_resultado_error {
     padding-top: 10px;
 }
 
+/* -------- Aparicion de la pagina en un solo paso -------- */
+/* Se oculta el contenido hasta que edatos-external-html.js termina —cargue o
+   falle la cabecera, da igual: revela en los dos casos— para que la pagina no
+   se complete en dos tiempos.
+   visibility y no display: asi el layout se calcula igual, la reserva de altura
+   de #cabecera sigue haciendo su trabajo y al revelar no hay recolocacion ni
+   salto de scroll.
+   Si el body se queda oculto no hay pagina, asi que hay dos rejas de seguridad:
+   esta animacion, que revela a los 3s aunque el cargador no llegue siquiera a
+   ejecutarse —404 del script, red caida—, y el <noscript> de layout/head.jsp
+   para quien tenga JavaScript desactivado. */
+@keyframes edatos-revelar {
+    to { visibility: visible; }
+}
+
+body {
+    visibility: hidden;
+    animation: edatos-revelar 0s linear 3s forwards;
+}
+
+body.edatos-listo {
+    visibility: visible;
+    animation: none;
+}
+
 /* -------- Cabecera externa cargada desde el navegador -------- */
 /* La cabecera ya no viaja en el HTML inicial (theme/js/edatos-external-html.js),
    asi que sin reservar su altura el contenido salta cada vez que llega, y con
