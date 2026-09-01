@@ -252,17 +252,24 @@ p.parrafo_resultado_error {
    visibility y no display: asi el layout se calcula igual, la reserva de altura
    de #cabecera sigue haciendo su trabajo y al revelar no hay recolocacion ni
    salto de scroll.
-   Si el body se queda oculto no hay pagina, asi que hay dos rejas de seguridad:
-   esta animacion, que revela a los 3s aunque el cargador no llegue siquiera a
-   ejecutarse —404 del script, red caida—, y el <noscript> de layout/head.jsp
-   para quien tenga JavaScript desactivado. */
+   Si el body se queda oculto no hay pagina, asi que hay dos respaldos: esta
+   animacion, que la muestra aunque el cargador no llegue siquiera a ejecutarse
+   —404 del script, red caida—, y el <noscript> de layout/head.jsp para quien
+   tenga JavaScript desactivado.
+   El retardo esta en 100ms a peticion de revision. Medido en desarrollo con la
+   traza de Chrome, la pagina se muestra a los 488ms (FCP), asi que con 100ms
+   este respaldo se dispara siempre y la pagina sale antes que la cabecera: el
+   ocultado solo evita el parpadeo de los primeros 100ms, y lo que impide el
+   salto de contenido es la reserva de altura de #cabecera de mas abajo. Para
+   que la pagina salga de una pieza el retardo tiene que quedar por encima del
+   tiempo real de carga. */
 @keyframes edatos-revelar {
     to { visibility: visible; }
 }
 
 body {
     visibility: hidden;
-    animation: edatos-revelar 0s linear 3s forwards;
+    animation: edatos-revelar 0s linear 100ms forwards;
 }
 
 body.edatos-listo {
