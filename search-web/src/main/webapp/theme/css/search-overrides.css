@@ -244,3 +244,47 @@ p.parrafo_resultado_error {
     font-size: 0.9em;
     padding-top: 10px;
 }
+
+/* -------- Aparicion de la pagina en un solo paso -------- */
+/* Se oculta el contenido hasta que edatos-external-html.js termina —cargue o
+   falle la cabecera, da igual: revela en los dos casos— para que la pagina no
+   se complete en dos tiempos.
+   visibility y no display: asi el layout se calcula igual, la reserva de altura
+   de #cabecera sigue haciendo su trabajo y al revelar no hay recolocacion ni
+   salto de scroll.
+   Si el body se queda oculto no hay pagina, asi que hay dos respaldos: esta
+   animacion, que la muestra aunque el cargador no llegue siquiera a ejecutarse
+   —404 del script, red caida—, y el <noscript> de layout/head.jsp para quien
+   tenga JavaScript desactivado.
+   El retardo esta en 100ms a peticion de revision. Medido en desarrollo con la
+   traza de Chrome, la pagina se muestra a los 488ms (FCP), asi que con 100ms
+   este respaldo se dispara siempre y la pagina sale antes que la cabecera: el
+   ocultado solo evita el parpadeo de los primeros 100ms, y lo que impide el
+   salto de contenido es la reserva de altura de #cabecera de mas abajo. Para
+   que la pagina salga de una pieza el retardo tiene que quedar por encima del
+   tiempo real de carga. */
+@keyframes edatos-revelar {
+    to { visibility: visible; }
+}
+
+body {
+    visibility: hidden;
+    animation: edatos-revelar 0s linear 100ms forwards;
+}
+
+body.edatos-listo {
+    visibility: visible;
+    animation: none;
+}
+
+/* -------- Cabecera externa cargada desde el navegador -------- */
+/* La cabecera ya no viaja en el HTML inicial (theme/js/edatos-external-html.js),
+   asi que sin reservar su altura el contenido salta cada vez que llega, y con
+   navegaciones completas eso ocurre en cada busqueda y en cada pestania.
+   44px es la altura medida de .edatos-header, identica a 1600, 1280 y 768 de
+   ancho y en el ancho de maquetacion que usan los moviles, y sin margenes.
+   Si el sistema de diseno cambia esa altura, se ajusta con la variable sin
+   tocar la regla. */
+#cabecera:empty {
+    min-height: var(--search-header-reserved-height, 44px);
+}
