@@ -13,13 +13,13 @@
         <repository>
             <id>arte-repository</id>
             <name>Arte Releases</name>
-            <url>http://repository.arte-consultores.com/content/repositories/releases</url>
+            <url>https://repository.arte-consultores.com/content/repositories/releases</url>
         </repository>
         <!-- use the following if you ARE using a snapshot version. -->
         <snapshotRepository>
             <id>arte-repository</id>
             <name>Arte Snapshots</name>
-            <url>http://repository.arte-consultores.com/content/repositories/snapshots</url>
+            <url>https://repository.arte-consultores.com/content/repositories/snapshots</url>
             <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
