@@ -8,7 +8,7 @@
 
 *Se deberá realizar primero la actualización de la versión 1.0.0 a la 2.0.0 y luego desde la 2.0.0 a la 3.0.0*
 
-## 6.6.0 a 6.6.1-SNAPSHOT
+## 6.6.0 a 6.6.1
 * Es necesario ejecutar el siguiente script SQL, donde se incluye la propiedad del endpoint de auditoría:
 
 ```
